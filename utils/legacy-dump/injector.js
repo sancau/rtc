@@ -48,8 +48,10 @@ for (let tool of tools) {
   data.actualPlacement = tool.actual_placement;
   data.comment = 'НЕТ КОММЕНТАРИЯ';
 
-  data.lastTestDate = tool.last_test_date;
-  data.sertificateNumber = 'ОБЯЗАТЕЛЬНО ЗАПОЛНИТЬ!';
+  data.lastTest = {
+    date: tool.last_test_date,
+    sertificate: 'ОБЯЗАТЕЛЬНО ЗАПОЛНИТЬ!' // можно брать из description
+  }
   data.testPeriod = 1;
   data.manufacturer = tool.manufacturer;
   data.yearOfProduction = tool.year_of_production;
@@ -84,8 +86,11 @@ for (let system of systems) {
   data.actualPlacement = system.actual_placement;
   data.comment = 'НЕТ КОММЕНТАРИЯ';
 
-  data.lastTestDate = system.last_test_date;
-  data.sertificateNumber = 'ОБЯЗАТЕЛЬНО ЗАПОЛНИТЬ!';
+  data.lastTest = {
+    date: system.last_test_date,
+    sertificate: 'ОБЯЗАТЕЛЬНО ЗАПОЛНИТЬ!'
+  }
+
   data.testPeriod = 1;
   data.manufacturer = system.manufacturer;
   data.yearOfProduction = system.year_of_production;
