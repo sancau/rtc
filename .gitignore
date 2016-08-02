@@ -44,3 +44,7 @@ build
 
 # python specific
 venv
+
+# domain specific data
+legacy-dump/json
+dep73.sqlite3
