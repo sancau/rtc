@@ -6,12 +6,10 @@ class Layout extends Component {
   render() {
     return (
       <div className="Layout">
-        <Link to="dashboard">
-          <button>Index</button>
-        </Link>
         <Link to="inventory">
-          <button>Inventory</button>
+          <button>Инвентарь</button>
         </Link>
+        <hr /> 
         {this.props.children}
       </div>
     );

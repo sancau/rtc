@@ -6,7 +6,7 @@ let baseEquipment = {
   sertificateNumber: { type: [String], required: true },
   testPeriod: { type: Date, required: true },
   manufacturer: { type: String },
-  yearOfProduction: { type: Number, min: 1980, max: 2020 },
+  yearOfProduction: { type: Number, min: 1950, max: 2020 },
   techDetails: { type: String },
 };
 

@@ -11,8 +11,7 @@ import './index.css';
 ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={Layout}>
-      <IndexRoute component={Dashboard}></IndexRoute>
-      <Route path="dashboard" component={Dashboard}></Route>
+      <IndexRoute component={Inventory}></IndexRoute>
       <Route path="inventory" component={Inventory}></Route>
     </Route>  
   </Router>,
