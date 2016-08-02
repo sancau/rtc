@@ -1,0 +1,14 @@
+.inventory-list {
+  margin-top: 10px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  border-collapse:collapse
+}
+
+.inventory-list thead {
+  border-bottom: 5px solid grey;
+}
+
+.inventory-list th, td {
+  padding: 5px;
+}

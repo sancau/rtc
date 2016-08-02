@@ -7,7 +7,10 @@ class Layout extends Component {
     return (
       <div className="Layout">
         <Link to="inventory">
-          <button>Инвентарь</button>
+          <button>Inventory</button>
+        </Link>
+        <Link to="test">
+          <button>Test page</button>
         </Link>
         <hr /> 
         {this.props.children}
