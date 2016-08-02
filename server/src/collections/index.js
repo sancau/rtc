@@ -2,6 +2,7 @@
 'use strict';
 
 module.exports = {
-  Category: require('./Category'),
-  Item: require('./Item')
+  Item: require('./Item'),
+  System: require('./System'),
+  Tool: require('./Tool')
 };

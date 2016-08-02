@@ -4,20 +4,26 @@
 const routers = require('./routers');
 const collections = require('./collections');
 
-const baseUrl = '/api';
+const baseUrl = '/inventory';
 
 const endpoints = {
-  
-  categories: {
-    url: `${baseUrl}/categories`,
-    router: routers.generic.crud,
-    collection: collections.Category
-  },
-  
+
   items: {
     url: `${baseUrl}/items`,
     router: routers.generic.crud,
     collection: collections.Item
+  },
+
+  systems: {
+    url: `${baseUrl}/systems`,
+    router: routers.generic.crud,
+    collection: collections.System
+  },
+  
+  tools: {
+    url: `${baseUrl}/tools`,
+    router: routers.generic.crud,
+    collection: collections.Tool
   }
 
 };

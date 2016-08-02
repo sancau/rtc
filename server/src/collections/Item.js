@@ -2,16 +2,20 @@
 'use strict';
 
 const mongoose = require('mongoose'),
+      baseItem = require('./abstract/BaseItem'),
       Schema = mongoose.Schema;
 
-let itemSchema = new Schema({
-  name: { type: String, required: true },
-  quantity: { type: Number, min: 0, default: 0 },
-  category: { type: Schema.Types.ObjectId, ref: 'category', required: true }
-});
+let schemaObject = {}
+Object.assign(schemaObject, baseItem);
+schemaObject.category = {
+  type: String,
+  required: true,
+  enum: ['instrument', 'furniture', 'computer'] 
+};
+
+let itemSchema = new Schema(schemaObject);
 
 module.exports = {
   model: mongoose.model('item', itemSchema),
-  populate: ['category']
 };
  
