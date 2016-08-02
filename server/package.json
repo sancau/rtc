@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "Server side application for rtc intro net / toolset",
   "scripts": {
-    "start": "node src/server.js 5000 tasker",
-    "dev": "nodemon src/server.js 5000 tasker-dev mongodb://localhost:27017",
+    "start": "node src/server.js 5000 dep73",
+    "dev": "nodemon src/server.js 5000 dep73-dev mongodb://localhost:27017",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

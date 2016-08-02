@@ -18,7 +18,7 @@ for table in ['tools', 'misc_items', 'test_systems']:
   cursor.execute("select * from %s" % table )
   results = cursor.fetchall()
 
-  with open("%s.json" % table, 'w', encoding='utf-8') as file:
+  with open("json/%s.json" % table, 'w', encoding='utf-8') as file:
       data = json.dumps(results, ensure_ascii=False)
       print(data)
       file.write(data)

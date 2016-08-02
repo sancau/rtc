@@ -14,8 +14,9 @@ for (let item of items) {
   data.code = item.code;
   data.inventoryNumber = item.inventory_number;
   data.unit = item.unit;
-  data.price = item.price.replace(',', '.');
-  data.quantity = item.quantity;
+  data.price = item.price === '-' ? null : 
+    item.price.replace(',', '.').replace(' ', '');
+  data.quantity = item.quantity == 0 ? 1 : item.quantity;
   data.actualPlacement = item.actual_placement;
   data.comment = 'НЕТ КОММЕНТАРИЯ';
   data.category = 'computer'
@@ -28,6 +29,7 @@ for (let item of items) {
     else {
       if ([400, 404, 500].indexOf(r.statusCode) > -1) {
         console.error(`ERROR WITH ${data.name}`);
+        console.log(data);
       }
       else {
         console.log('DONE' + ' ' + data.name);
@@ -43,18 +45,20 @@ for (let tool of tools) {
   data.code = tool.code;
   data.inventoryNumber = tool.inventory_number;
   data.unit = tool.unit;
-  data.price = tool.price.replace(',', '.');
-  data.quantity = tool.quantity;
+  data.price = tool.price === '-' ? null : 
+    tool.price.replace(',', '.').replace(' ', '');
+  data.quantity = tool.quantity == 0 ? 1 : tool.quantity;
   data.actualPlacement = tool.actual_placement;
   data.comment = 'НЕТ КОММЕНТАРИЯ';
 
-  data.lastTest = {
+  data.lastTest = [{
     date: tool.last_test_date,
     sertificate: 'ОБЯЗАТЕЛЬНО ЗАПОЛНИТЬ!' // можно брать из description
-  }
+  }];
   data.testPeriod = 1;
   data.manufacturer = tool.manufacturer;
-  data.yearOfProduction = tool.year_of_production;
+  data.yearOfProduction = tool.year_of_production === 0 ?
+    null : tool.year_of_production;
   data.techDetails = tool.specification;
 
   let url = 'http://localhost:5000/inventory/tools';
@@ -65,6 +69,7 @@ for (let tool of tools) {
     else {
       if ([400, 404, 500].indexOf(r.statusCode) > -1) {
         console.error(`ERROR WITH ${data.name}`);
+        console.log(data);
       }
       else {
         console.log('DONE' + ' ' + data.name);
@@ -81,19 +86,20 @@ for (let system of systems) {
   data.code = system.code;
   data.inventoryNumber = system.inventory_number;
   data.unit = system.unit;
-  data.price = system.price.replace(',', '.');
-  data.quantity = system.quantity;
+  data.price = system.price === '-' ? null : 
+    system.price.replace(',', '.').replace(' ', '');
+  data.quantity = system.quantity == 0 ? 1 : system.quantity;
   data.actualPlacement = system.actual_placement;
   data.comment = 'НЕТ КОММЕНТАРИЯ';
 
-  data.lastTest = {
+  data.lastTest = [{
     date: system.last_test_date,
     sertificate: 'ОБЯЗАТЕЛЬНО ЗАПОЛНИТЬ!'
-  }
-
+  }];
   data.testPeriod = 1;
   data.manufacturer = system.manufacturer;
-  data.yearOfProduction = system.year_of_production;
+  data.yearOfProduction = system.year_of_production === 0 ?
+    null : system.year_of_production;
   data.techDetails = system.specification;
   
   switch (system.purpose) {
@@ -119,6 +125,7 @@ for (let system of systems) {
     else {
       if ([400, 404, 500].indexOf(r.statusCode) > -1) {
         console.error(`ERROR WITH ${data.name}`);
+        console.log(data);
       }
       else {
         console.log('DONE' + ' ' + data.name);
