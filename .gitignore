@@ -46,5 +46,5 @@ build
 venv
 
 # domain specific data
-legacy-dump/json
+json
 dep73.sqlite3
