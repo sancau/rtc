@@ -6,10 +6,10 @@ class Layout extends Component {
   render() {
     return (
       <div className="Layout">
-        <Link to="inventory">
+        <Link to="inventory" activeClassName="active">
           <button>Inventory</button>
         </Link>
-        <Link to="test">
+        <Link to="test" activeClassName="active">
           <button>Test page</button>
         </Link>
         <hr /> 
