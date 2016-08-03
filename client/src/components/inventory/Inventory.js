@@ -1,46 +1,29 @@
+
 import React, { Component } from 'react';
 
-import InventoryFilter from './InventoryFilter'
-import InventoryList from './InventoryList'
+import InventoryFilter from './InventoryFilter';
+import InventoryList from './InventoryList';
+
+import ItemStore from '../../stores/ItemStore';
 
 class Inventory extends Component {
   constructor() {
     super();
-
-    // Mock data
-    this.initialList = [
-      {
-        id: 1,
-        name: 'Name1'
-      },
-      {
-        id: 2,
-        name: 'Name2'
-      },
-      {
-        id: 3,
-        name: 'Name3'
-      },
-      {
-        id: 4,
-        name: 'Name4'
-      }
-    ]
-
-    this.state = { items: this.initialList };
+    this.state = { items: ItemStore.getItems() };
   }
 
-  filter(queryString) {
-    let items = this.initialList.filter((item) => {
-      return item.name.indexOf(queryString) > -1
+  componentWillMount() {
+    ItemStore.on('change', () => {
+      this.setState({
+        items: ItemStore.getItems()
+      });
     });
-    this.setState({items});
   }
 
   render() {
     return (
       <div className="inventory">
-        <InventoryFilter filter={this.filter.bind(this)} />
+        <InventoryFilter />
         <InventoryList items={this.state.items} />
       </div>
     );

@@ -1,9 +1,12 @@
+
 import React, { Component } from 'react';
+
+import * as InventoryActions from '../../actions/InventoryActions';
 
 class InventoryFilter extends Component {
   handleChange(e) {
-    const queryString = e.target.value;
-    this.props.filter(queryString);
+    const query = e.target.value;
+    InventoryActions.filterItems(query);
   }
 
   render() {
