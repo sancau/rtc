@@ -34,7 +34,8 @@ class ItemStore extends EventEmitter {
   }
 
   filter(query) {
-    // some ajax stuff could be here i suppose..
+    // some ajax stuff could be here I suppose..
+    // or it might be better to move it to a separate module
     this.items = this.allItems.filter((item) => {
       return item.name.indexOf(query) > -1
     }); 
