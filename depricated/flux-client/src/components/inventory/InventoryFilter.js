@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 
-import * as inventoryActions from '../../actions/inventoryActions';
+import * as InventoryActions from '../../actions/InventoryActions';
 
 class InventoryFilter extends Component {
   handleChange(e) {

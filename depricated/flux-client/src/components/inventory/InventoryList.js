@@ -1,15 +1,34 @@
 
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import InventoryItem from './InventoryItem';
-
+import ItemStore from '../../stores/ItemStore';
 
 import './InventoryList.css';
 
 class InventoryList extends Component {
+  constructor() {
+    super();
+    this.getItems = this.getItems.bind(this);
+    this.state = { items: ItemStore.getItems() };
+  }
+
+  getItems() {
+    this.setState({
+      items: ItemStore.getItems()
+    });
+  }
+
+  componentWillMount() {
+    ItemStore.on('change', this.getItems);
+  }
+
+  componentWillUnmount() {
+    ItemStore.removeListener('change', this.getItems);
+  }
+
   render() {
-    const items = [];
+    const items = this.state.items;
     const itemsList = items.map((item) => {
       return <InventoryItem key={item.id} item={item}></InventoryItem>
     });
@@ -28,10 +47,4 @@ class InventoryList extends Component {
   }
 }
 
-function mapStateToProps(store) {
-  return {
-    items: store.items
-  }
-}
-
-export default connect(mapStateToProps)(InventoryList);
+export default InventoryList;
