@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import InventoryFilter from './InventoryFilter';
 import InventoryList from './InventoryList';
 
-import { filterItems } from '../../actions/inventoryActions';
+import { fetchItems, filterItems } from '../../actions/inventoryActions';
 
 
 class Inventory extends Component {
@@ -16,6 +16,10 @@ class Inventory extends Component {
       this.props.dispatch(filterItems(query));
     }.bind(this); 
   }  
+
+  componentWillMount() {
+    this.props.dispatch(fetchItems());    
+  }
 
   render() {
     return (

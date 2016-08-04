@@ -5,7 +5,6 @@ class InventoryItem extends Component {
   render() {
     return (
       <tr className="inventory-item"> 
-        <td> {this.props.item.id} </td>
         <td> {this.props.item.name} </td>
       </tr>
     );

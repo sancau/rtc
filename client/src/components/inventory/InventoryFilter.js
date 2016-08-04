@@ -1,6 +1,8 @@
 
 import React, { Component } from 'react';
 
+import './InventoryFilter.css'
+
 class InventoryFilter extends Component {
   render() {
     return (
@@ -8,7 +10,7 @@ class InventoryFilter extends Component {
         <input 
           onChange={this.props.onChange} 
           type="text" 
-          placeholder="Search" />
+          placeholder="Поиск" />
       </div>
     );
   }

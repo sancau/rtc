@@ -8,15 +8,14 @@ import './InventoryList.css';
 class InventoryList extends Component {
   render() {
     const InventoryItemArray = this.props.items.map((item) => {
-      return <InventoryItem key={item.id} item={item}></InventoryItem>
+      return <InventoryItem key={item._id} item={item}></InventoryItem>
     });
 
     return (
       <table className="inventory-list">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Name</th>
+            <th>Наименование</th>
           </tr>
         </thead>
         <tbody>{InventoryItemArray}</tbody>
