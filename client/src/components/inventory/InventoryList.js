@@ -9,15 +9,22 @@ import './InventoryList.css';
 class InventoryList extends Component {
   constructor() {
     super();
+    this.getItems = this.getItems.bind(this);
     this.state = { items: ItemStore.getItems() };
   }
 
-  componentWillMount() {
-    ItemStore.on('change', () => {
-      this.setState({
-        items: ItemStore.getItems()
-      });
+  getItems() {
+    this.setState({
+      items: ItemStore.getItems()
     });
+  }
+
+  componentWillMount() {
+    ItemStore.on('change', this.getItems);
+  }
+
+  componentWillUnmount() {
+    ItemStore.removeListener('change', this.getItems);
   }
 
   render() {
