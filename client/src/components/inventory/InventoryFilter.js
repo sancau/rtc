@@ -1,19 +1,12 @@
 
 import React, { Component } from 'react';
 
-import * as inventoryActions from '../../actions/inventoryActions';
-
 class InventoryFilter extends Component {
-  handleChange(e) {
-    const query = e.target.value;
-    InventoryActions.filterItems(query);
-  }
-
   render() {
     return (
       <div className="inventory-filter">
         <input 
-          onChange={this.handleChange.bind(this)} 
+          onChange={this.props.onChange} 
           type="text" 
           placeholder="Search" />
       </div>
