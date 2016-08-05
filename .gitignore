@@ -48,3 +48,6 @@ venv
 # domain specific data
 json
 dep73.sqlite3
+
+# VS Code
+.vscode
