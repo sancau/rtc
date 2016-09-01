@@ -7,7 +7,7 @@ export default function reducer(state=initialState, action) {
   switch (action.type) {
     case 'FILTER_ITEMS': {
       return {
-        ...state, 
+        ...state,
         items: initialState.items.filter((item) => {
           let name = item.name.toLowerCase();
           let query = action.payload.toLowerCase();
@@ -18,14 +18,15 @@ export default function reducer(state=initialState, action) {
     case 'FETCH_ITEMS_FULFILLED': {
       initialState.items = action.payload;
       return {
-        ...state, 
+        ...state,
         items: initialState.items
       };
     }
     case 'FETCH_ITEMS_REJECTED': {
-      console.error('Error while fetching items..'); // TEMP
+      console.error('Error while fetching items..');
+      console.error(action.payload);
       return state;
-    }    
+    }
 
     default: return state;
   }

@@ -19,7 +19,7 @@ ReactDOM.render(
         <IndexRoute component={Inventory}></IndexRoute>
         <Route path="inventory" component={Inventory}></Route>
         <Route path="test" component={Test}></Route>
-      </Route>  
+      </Route>
     </Router>
   </Provider>,
   document.getElementById('root')

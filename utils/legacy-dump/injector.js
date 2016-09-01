@@ -8,13 +8,14 @@ const items   = require('./json/misc_items.json'),
       systems = require('./json/test_systems.json');
 
 // posting items
+let counter = 0;
 for (let item of items) {
   let data = {};
   data.name = item.name;
   data.code = item.code;
   data.inventoryNumber = item.inventory_number;
   data.unit = item.unit;
-  data.price = item.price === '-' ? null : 
+  data.price = item.price === '-' ? null :
     item.price.replace(',', '.').replace(' ', '');
   data.quantity = item.quantity == 0 ? 1 : item.quantity;
   data.actualPlacement = item.actual_placement;
@@ -33,6 +34,8 @@ for (let item of items) {
       }
       else {
         console.log('DONE' + ' ' + data.name);
+        counter += 1;
+        console.log(counter);
       }
     }
   });
@@ -45,7 +48,7 @@ for (let tool of tools) {
   data.code = tool.code;
   data.inventoryNumber = tool.inventory_number;
   data.unit = tool.unit;
-  data.price = tool.price === '-' ? null : 
+  data.price = tool.price === '-' ? null :
     tool.price.replace(',', '.').replace(' ', '');
   data.quantity = tool.quantity == 0 ? 1 : tool.quantity;
   data.actualPlacement = tool.actual_placement;
@@ -73,6 +76,8 @@ for (let tool of tools) {
       }
       else {
         console.log('DONE' + ' ' + data.name);
+        counter += 1;
+        console.log(counter);
       }
     }
   });
@@ -80,13 +85,13 @@ for (let tool of tools) {
 
 // posting systems
 for (let system of systems) {
-  
+
   let data = {};
   data.name = system.name;
   data.code = system.code;
   data.inventoryNumber = system.inventory_number;
   data.unit = system.unit;
-  data.price = system.price === '-' ? null : 
+  data.price = system.price === '-' ? null :
     system.price.replace(',', '.').replace(' ', '');
   data.quantity = system.quantity == 0 ? 1 : system.quantity;
   data.actualPlacement = system.actual_placement;
@@ -101,7 +106,7 @@ for (let system of systems) {
   data.yearOfProduction = system.year_of_production === 0 ?
     null : system.year_of_production;
   data.techDetails = system.specification;
-  
+
   switch (system.purpose) {
     case 'К':
       data.purpose = 'climatic';
@@ -129,6 +134,8 @@ for (let system of systems) {
       }
       else {
         console.log('DONE' + ' ' + data.name);
+        counter += 1;
+        console.log(counter);
       }
     }
   });
