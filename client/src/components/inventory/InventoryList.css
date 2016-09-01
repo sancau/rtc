@@ -2,8 +2,8 @@
 .inventory-list {
   margin-top: 10px;
   border: 2px solid grey;
-  border-radius: 5px;
-  border-collapse:collapse
+  background-color: #eee;
+  color: #555;
 }
 
 .inventory-list thead {
@@ -13,4 +13,6 @@
 .inventory-list tbody tr:hover {
   cursor: pointer;
   background-color: #eee;
+  color: #555;
+  font-weight: bold;
 }

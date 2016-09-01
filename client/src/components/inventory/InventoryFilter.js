@@ -17,7 +17,7 @@ class InventoryFilter extends Component {
 
         <div className="col-xs-8">
           <button
-            className={`${this.props.getButtonClass('all')} pull-right`}
+            className='btn btn-primary btn pull-right'
             onClick={
               () => this.props.onTypeClick('all')}> Показать всё </button>
 
