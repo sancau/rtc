@@ -12,7 +12,7 @@ class InventoryList extends Component {
     });
 
     return (
-      <table className="inventory-list">
+      <table className="inventory-list table">
         <thead>
           <tr>
             <th>Наименование</th>

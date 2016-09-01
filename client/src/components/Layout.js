@@ -8,7 +8,7 @@ class Layout extends Component {
     return (
       <div className="Layout">
         <h2> Инвентарь </h2>
-        <hr /> 
+        <hr />
         {this.props.children}
       </div>
     );

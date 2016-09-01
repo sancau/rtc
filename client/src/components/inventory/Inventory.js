@@ -26,7 +26,8 @@ class Inventory extends Component {
     }.bind(this);
 
     this.getButtonClass = function (type) {
-      return this.mergedQuery.types[type] ? 'active' : '';
+      return this.mergedQuery.types[type] ?
+        'btn btn-primary btn' : 'btn btn-default';
     }.bind(this);
 
     this.handleTypeClick = function (type) {

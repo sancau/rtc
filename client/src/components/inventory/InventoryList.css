@@ -10,6 +10,7 @@
   border-bottom: 5px solid grey;
 }
 
-.inventory-list th, td {
-  padding: 5px;
+.inventory-list tbody tr:hover {
+  cursor: pointer;
+  background-color: #eee;
 }
