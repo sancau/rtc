@@ -16,6 +16,7 @@ class InventoryList extends Component {
         <thead>
           <tr>
             <th>Наименование</th>
+            <th>Цена</th>
           </tr>
         </thead>
         <tbody>{InventoryItemArray}</tbody>

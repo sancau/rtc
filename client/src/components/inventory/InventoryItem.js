@@ -4,8 +4,9 @@ import React, { Component } from 'react';
 class InventoryItem extends Component {
   render() {
     return (
-      <tr className="inventory-item"> 
+      <tr className="inventory-item">
         <td> {this.props.item.name} </td>
+        <td> {this.props.item.price} </td>
       </tr>
     );
   }

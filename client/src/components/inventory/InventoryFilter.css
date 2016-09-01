@@ -3,4 +3,15 @@
   min-width: 400px;
   padding: 7px 10px;
   font-size: 16px;
+  margin-right: 10px;
+}
+
+.inventory-filter button {
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.inventory-filter .active {
+  background-color: #428bca;
+  color: white;
 }

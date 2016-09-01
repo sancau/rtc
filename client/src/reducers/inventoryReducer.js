@@ -10,8 +10,10 @@ export default function reducer(state=initialState, action) {
         ...state,
         items: initialState.items.filter((item) => {
           let name = item.name.toLowerCase();
-          let query = action.payload.toLowerCase();
-          return name.indexOf(query) > -1;
+          let queryString = action.payload.queryString.toLowerCase();
+          let typesIncluded = action.payload.types;
+          return name.indexOf(queryString) > -1
+                 && typesIncluded[item.type];
         })
       };
     }
