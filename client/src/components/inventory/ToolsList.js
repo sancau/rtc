@@ -1,11 +1,12 @@
 
 import React, { Component } from 'react';
 
+
 class ToolsList extends Component {
   render() {
     const tools = this.props.tools.map((tool, idx) => {
       return (
-        <tr key={idx}>
+        <tr key={idx} onClick={() => this.props.onRowClick(tool)}>
           <td> {tool.name} </td>
           <td> {tool.inventoryNumber} </td>
         </tr>

@@ -7,8 +7,6 @@ class Layout extends Component {
   render() {
     return (
       <div className="Layout">
-        <h2> Инвентарь </h2>
-        <hr />
         {this.props.children}
       </div>
     );

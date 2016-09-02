@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 
 import './InventoryFilter.css'
 
+
 class InventoryFilter extends Component {
   render() {
     return (

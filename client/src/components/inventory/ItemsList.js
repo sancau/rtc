@@ -2,21 +2,21 @@
 import React, { Component } from 'react';
 
 
-class SystemsList extends Component {
+class ItemsList extends Component {
   render() {
-    const systems = this.props.systems.map((system, idx) => {
+    const items = this.props.items.map((item, idx) => {
       return (
-        <tr key={idx} onClick={() => this.props.onRowClick(system)}>
-          <td> {system.name} </td>
-          <td> {system.inventoryNumber} </td>
+        <tr key={idx} onClick={() => this.props.onRowClick(item)}>
+          <td> {item.name} </td>
+          <td> {item.inventoryNumber} </td>
         </tr>
       );
     });
 
     return (
-      <div className="systems-list">
+      <div className="items-list">
         <hr />
-        <h4> Испытательные системы </h4>
+        <h4> Прочие позиции </h4>
         <table className="table">
           <thead>
             <tr>
@@ -25,7 +25,7 @@ class SystemsList extends Component {
             </tr>
           </thead>
           <tbody>
-            {systems}
+            {items}
           </tbody>
         </table>
       </div>
@@ -33,4 +33,4 @@ class SystemsList extends Component {
   }
 }
 
-export default SystemsList;
+export default ItemsList;
