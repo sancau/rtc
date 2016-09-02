@@ -42,7 +42,12 @@ class InventoryList extends Component {
       color: '#555',
       width: '90%',
       left: '5%',
-      marginLeft: '0'
+      top: '10%',
+      marginTop: '0',
+      marginLeft: '0',
+      height: '700px',
+      maxHeight: 'calc(100vh - 210px)',
+      overflowY: 'auto'
     };
 
     return (
