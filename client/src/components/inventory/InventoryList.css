@@ -1,18 +1,20 @@
 
-.inventory-list {
-  margin-top: 10px;
+.inventory-list table {
   border: 2px solid grey;
   background-color: #eee;
   color: #555;
 }
 
 .inventory-list thead {
-  border-bottom: 5px solid grey;
+  border-bottom: 3px solid grey;
+}
+
+.inventory-list thead th {
+  padding: 5px 7px;
 }
 
 .inventory-list tbody tr:hover {
   cursor: pointer;
-  background-color: #eee;
+  background-color: #ddd;
   color: #555;
-  font-weight: bold;
 }

@@ -1,26 +1,31 @@
 
 import React, { Component } from 'react';
 
-import InventoryItem from './InventoryItem';
+import SystemsList from './SystemsList';
+import ToolsList from './ToolsList';
 
 import './InventoryList.css';
 
 class InventoryList extends Component {
   render() {
-    const InventoryItemArray = this.props.items.map((item) => {
-      return <InventoryItem key={item._id} item={item}></InventoryItem>
+
+    const itemsArray = this.props.items.filter((item) => {
+      return item.type === 'items';
+    });
+
+    const toolsArray = this.props.items.filter((item) => {
+      return item.type === 'tools';
+    });
+
+    const systemsArray = this.props.items.filter((item) => {
+      return item.type === 'systems';
     });
 
     return (
-      <table className="inventory-list table">
-        <thead>
-          <tr>
-            <th>Наименование</th>
-            <th>Цена</th>
-          </tr>
-        </thead>
-        <tbody>{InventoryItemArray}</tbody>
-      </table>
+      <div className="inventory-list">
+        {systemsArray.length ? <SystemsList systems={systemsArray} /> : null}
+        {toolsArray.length ? <ToolsList tools={toolsArray} /> : null}
+      </div>
     );
   }
 }
