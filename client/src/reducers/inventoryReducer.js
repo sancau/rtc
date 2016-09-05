@@ -16,7 +16,7 @@ export default function reducer(state=initialState, action) {
       case 'items': {
         return true;
       }
-      default: true;
+      default: return true;
     }
   };
 
