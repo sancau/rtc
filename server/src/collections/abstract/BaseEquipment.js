@@ -2,7 +2,7 @@
 'use strict';
 
 let baseEquipment = {
-  lastTest: [{
+  tests: [{
     date: { type: Date, required: true },
     sertificate: { type: String, required: true }
   }],

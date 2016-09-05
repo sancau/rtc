@@ -19,7 +19,7 @@ for (let item of items) {
     item.price.replace(',', '.').replace(' ', '');
   data.quantity = item.quantity == 0 ? 1 : item.quantity;
   data.actualPlacement = item.actual_placement;
-  data.comment = 'НЕТ КОММЕНТАРИЯ';
+  data.comment = item.comment;
   data.category = 'computer'
 
   let url = 'http://localhost:5000/inventory/items';
@@ -52,9 +52,9 @@ for (let tool of tools) {
     tool.price.replace(',', '.').replace(' ', '');
   data.quantity = tool.quantity == 0 ? 1 : tool.quantity;
   data.actualPlacement = tool.actual_placement;
-  data.comment = 'НЕТ КОММЕНТАРИЯ';
+  data.comment = tool.comment;
 
-  data.lastTest = [{
+  data.tests = [{
     date: tool.last_test_date,
     sertificate: 'ОБЯЗАТЕЛЬНО ЗАПОЛНИТЬ!' // можно брать из description
   }];
@@ -95,9 +95,9 @@ for (let system of systems) {
     system.price.replace(',', '.').replace(' ', '');
   data.quantity = system.quantity == 0 ? 1 : system.quantity;
   data.actualPlacement = system.actual_placement;
-  data.comment = 'НЕТ КОММЕНТАРИЯ';
+  data.comment = system.comment;
 
-  data.lastTest = [{
+  data.tests = [{
     date: system.last_test_date,
     sertificate: 'ОБЯЗАТЕЛЬНО ЗАПОЛНИТЬ!'
   }];

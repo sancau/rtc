@@ -1,0 +1,9 @@
+.systems-list .pad-0 {
+  padding: 0;
+}
+
+.systems-list button {
+  margin-right: 2px !important;
+  margin-left: 10px !important;
+  border-radius: 10px;
+}

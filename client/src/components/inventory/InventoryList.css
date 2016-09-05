@@ -1,7 +1,7 @@
 
 .inventory-list table {
   border: 2px solid grey;
-  background-color: #eee;
+  background-color: #fefefe;
   color: #555;
 }
 
@@ -15,6 +15,6 @@
 
 .inventory-list tbody tr:hover {
   cursor: pointer;
-  background-color: #ddd;
+  background-color: #eee;
   color: #555;
 }

@@ -11,36 +11,32 @@ import { fetchItems, filterItems } from '../../actions/inventoryActions';
 class Inventory extends Component {
   constructor() {
     super();
-    this.mergedQuery = {
+
+    // initial default query
+    this.query = {
       queryString: '',
       types: {
-        'systems': true,
-        'tools': true,
-        'items': true
+        systems: {
+          visible: true,
+          climatic: {
+            visible: true
+          },
+          mechanic: {
+            visible: true
+          }
+        },
+        tools: {
+          visible: true
+        },
+        items: {
+          visible: true
+        }
       }
     };
 
-    this.handleQueryChange = function (event) {
-      this.mergedQuery.queryString = event.target.value;
-      this.props.dispatch(filterItems(this.mergedQuery));
-    }.bind(this);
-
-    this.getButtonClass = function (type) {
-      return this.mergedQuery.types[type] ?
-        'btn btn-success btn' : 'btn btn-danger';
-    }.bind(this);
-
-    this.handleTypeClick = function (type) {
-      if (type === 'all') {
-        this.mergedQuery.types = {
-          'systems': true,
-          'tools': true,
-          'items': true
-        };
-      } else {
-        this.mergedQuery.types[type] = !this.mergedQuery.types[type];
-      }
-      this.props.dispatch(filterItems(this.mergedQuery));
+    this.updateQuery = function (data) {
+      Object.assign(this.query, data);
+      this.props.dispatch(filterItems(this.query));
     }.bind(this);
   }
 
@@ -54,11 +50,14 @@ class Inventory extends Component {
         <h2> Инвентарь </h2>
         <hr />
         <InventoryFilter
-          onChange={this.handleQueryChange}
-          onTypeClick={this.handleTypeClick}
-          getButtonClass={this.getButtonClass}
+          updateQuery={this.updateQuery}
+          query={this.query}
         />
-        <InventoryList items={this.props.items} />
+        <InventoryList
+          items={this.props.items}
+          updateQuery={this.updateQuery}
+          query={this.query}
+        />
       </div>
     );
   }

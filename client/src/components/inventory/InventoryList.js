@@ -54,16 +54,22 @@ class InventoryList extends Component {
       <div className="inventory-list">
         {systemsArray.length ?
           <SystemsList
+            updateQuery={this.props.updateQuery}
+            query={this.props.query}
             systems={systemsArray}
             onRowClick={this.showDetails} /> : null}
 
         {toolsArray.length ?
           <ToolsList
+            updateQuery={this.props.updateQuery}
+            query={this.props.query}
             tools={toolsArray}
             onRowClick={this.showDetails} /> : null}
 
         {itemsArray.length ?
           <ItemsList
+            updateQuery={this.props.updateQuery}
+            query={this.props.query}
             items={itemsArray}
             onRowClick={this.showDetails} /> : null}
 

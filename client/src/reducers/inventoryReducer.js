@@ -4,6 +4,22 @@ let initialState = {
 };
 
 export default function reducer(state=initialState, action) {
+  const getAdditions = function (item, query) {
+    let type = item.type;
+    switch (type) {
+      case 'systems': {
+        return query[item.purpose].visible;
+      }
+      case 'tools': {
+        return true;
+      }
+      case 'items': {
+        return true;
+      }
+      default: true;
+    }
+  };
+
   switch (action.type) {
     case 'FILTER_ITEMS': {
       return {
@@ -11,9 +27,9 @@ export default function reducer(state=initialState, action) {
         items: initialState.items.filter((item) => {
           let name = item.name.toLowerCase();
           let queryString = action.payload.queryString.toLowerCase();
-          let typesIncluded = action.payload.types;
           return name.indexOf(queryString) > -1
-                 && typesIncluded[item.type];
+             && action.payload.types[item.type].visible
+             && getAdditions(item, action.payload.types[item.type]);
         })
       };
     }
