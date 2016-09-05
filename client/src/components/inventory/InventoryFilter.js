@@ -18,6 +18,19 @@ class InventoryFilter extends Component {
     };
 
     const onButtonClick = (button) => {
+      const isLast = (type) => {
+        let slice = this.props.query.types[type];
+        slice.visible = !slice.visible;
+        let counter = 0;
+        for (let i of ['systems', 'tools', 'items']) {
+          if (this.props.query.types[i].visible) {
+            counter++;
+          }
+        }
+        slice.visible = !slice.visible;
+        return !(counter > 0);
+      };
+
       let query = Object.assign(this.props.query, {});
       switch (button) {
         case 'all': {
@@ -27,15 +40,21 @@ class InventoryFilter extends Component {
           break;
         }
         case 'systems': {
-          query.types.systems.visible = !query.types.systems.visible;
+          if (!isLast('systems')) {
+            query.types.systems.visible = !query.types.systems.visible;
+          }
           break;
         }
         case 'tools': {
-          query.types.tools.visible = !query.types.tools.visible;
+          if (!isLast('tools')) {
+            query.types.tools.visible = !query.types.tools.visible;
+          }
           break;
         }
         case 'items': {
-          query.types.items.visible = !query.types.items.visible;
+          if (!isLast('items')) {
+            query.types.items.visible = !query.types.items.visible;
+          }
           break;
         }
         default: return;

@@ -33,8 +33,18 @@ class SystemsList extends Component {
 
     const querySlice = this.props.query.types.systems;
     const getButtonClass = (type) => {
-      return querySlice[type].visible ||
-        type === 'all' ? 'btn-success' : 'btn-danger';
+      if (type === 'all') {
+        return (this.props.query.types.systems.climatic.visible === true &&
+          this.props.query.types.systems.mechanic.visible === true) ?
+          'btn-success' : 'btn-primary';
+      }
+      if (this.props.query.types.systems.climatic.visible === true &&
+        this.props.query.types.systems.mechanic.visible === true) {
+          return 'btn-primary';
+      } else {
+        return querySlice[type].visible  ?
+        'btn-success' : 'btn-primary';
+      }
     };
 
     const showClimatic = () => {
@@ -80,7 +90,7 @@ class SystemsList extends Component {
             </button>
 
             <button
-              className='btn btn-sm btn-primary'
+              className={`btn btn-sm ${getButtonClass('all')}`}
               onClick={showAll}>
               Все
             </button>
