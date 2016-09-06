@@ -102,7 +102,7 @@ class ItemsList extends Component {
 
           </div>
         </div>
-        <table className="table">
+        <table className="table clickable">
           <thead>
             <tr>
               <th>Наименование</th>

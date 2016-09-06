@@ -24,7 +24,7 @@ class ToolsList extends Component {
       <div className="tools-list">
         <hr />
         <h4> Приборы и средства измерения </h4>
-        <table className="table">
+        <table className="table clickable">
           <thead>
             <tr>
               <th>Наименование</th>
