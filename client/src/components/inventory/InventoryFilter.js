@@ -34,9 +34,7 @@ class InventoryFilter extends Component {
       let query = Object.assign(this.props.query, {});
       switch (button) {
         case 'all': {
-          query.types.systems.visible = true;
-          query.types.tools.visible = true;
-          query.types.items.visible = true;
+          query = null;
           break;
         }
         case 'systems': {

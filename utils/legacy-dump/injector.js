@@ -20,7 +20,11 @@ for (let item of items) {
   data.quantity = item.quantity == 0 ? 1 : item.quantity;
   data.actualPlacement = item.actual_placement;
   data.comment = item.comment;
-  data.category = 'computer'
+  data.category = function(item) {
+    return item.category === 'М' ?
+      'computer' : item.category === 'К' ?
+      'furniture' : 'instrument';
+  }(item);
 
   let url = 'http://localhost:5000/inventory/items';
   request.post(url, { form: data }, (e, r, body) => {

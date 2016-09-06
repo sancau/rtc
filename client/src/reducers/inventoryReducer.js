@@ -14,7 +14,7 @@ export default function reducer(state=initialState, action) {
         return true;
       }
       case 'items': {
-        return true;
+        return query[item.category].visible;
       }
       default: return true;
     }

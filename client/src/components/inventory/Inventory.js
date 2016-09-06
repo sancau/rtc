@@ -6,6 +6,7 @@ import InventoryFilter from './InventoryFilter';
 import InventoryList from './InventoryList';
 
 import { fetchItems, filterItems } from '../../actions/inventoryActions';
+import { mergeDeep } from '../../helpers/utils';
 
 
 class Inventory extends Component {
@@ -13,7 +14,7 @@ class Inventory extends Component {
     super();
 
     // initial default query
-    this.query = {
+    this.initialQuery = {
       queryString: '',
       types: {
         systems: {
@@ -29,12 +30,30 @@ class Inventory extends Component {
           visible: true
         },
         items: {
-          visible: true
+          visible: true,
+          computer: {
+            visible: true
+          },
+          furniture: {
+            visible: true
+          },
+          instrument: {
+            visible: true
+          }
         }
       }
     };
 
+    this.query = mergeDeep({}, this.initialQuery);
+
     this.updateQuery = function (data) {
+      if (data == null) {
+        let queryString = this.query.queryString;
+        this.query = mergeDeep({}, this.initialQuery);
+        this.query.queryString = queryString;
+        this.props.dispatch(filterItems(this.query));
+        return;
+      }
       Object.assign(this.query, data);
       this.props.dispatch(filterItems(this.query));
     }.bind(this);

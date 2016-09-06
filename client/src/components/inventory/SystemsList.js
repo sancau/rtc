@@ -1,31 +1,21 @@
 
 import React, { Component } from 'react';
 
+import {
+  getValidBefore,
+  getTestStatusClassName } from '../../helpers/inventoryHelpers';
+
 import './SystemsList.css';
 
 class SystemsList extends Component {
   render() {
     const systems = this.props.systems.map((system, idx) => {
-
-      const validBefore = function(system) {
-        let lastTest = system.tests.slice(-1).pop();
-        let date = new Date(lastTest.date);
-        date.setYear(date.getFullYear() + system.testPeriod);
-        return  date.toLocaleString('ru', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        });
-      }(system);
-
-      const rowClassName = function(system) {
-        return 'alert-success';
-      }(system);
-
+      const validBefore = getValidBefore(system);
+      const testStatusClassName = getTestStatusClassName(system);
       return (
         <tr key={idx} onClick={() => this.props.onRowClick(system)}>
           <td> {system.name} </td>
-          <td className={rowClassName}> {validBefore} </td>
+          <td className={testStatusClassName}> {validBefore} </td>
           <td> {system.comment} </td>
         </tr>
       );

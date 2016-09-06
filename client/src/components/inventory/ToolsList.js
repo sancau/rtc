@@ -1,14 +1,21 @@
 
 import React, { Component } from 'react';
 
+import {
+  getValidBefore,
+  getTestStatusClassName } from '../../helpers/inventoryHelpers';
 
 class ToolsList extends Component {
   render() {
     const tools = this.props.tools.map((tool, idx) => {
+      const validBefore = getValidBefore(tool);
+      const testStatusClassName = getTestStatusClassName(tool);
       return (
         <tr key={idx} onClick={() => this.props.onRowClick(tool)}>
           <td> {tool.name} </td>
-          <td> {tool.inventoryNumber} </td>
+          <td> {tool.techDetails} </td>
+          <td className={testStatusClassName}> {validBefore} </td>
+          <td> {tool.comment} </td>
         </tr>
       );
     });
@@ -21,7 +28,9 @@ class ToolsList extends Component {
           <thead>
             <tr>
               <th>Наименование</th>
-              <th>Инв. номер</th>
+              <th>Технические характеристики</th>
+              <th>Срок поверки</th>
+              <th>Примечание</th>
             </tr>
           </thead>
           <tbody>
