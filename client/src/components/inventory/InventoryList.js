@@ -45,7 +45,7 @@ class InventoryList extends Component {
       top: '10%',
       marginTop: '0',
       marginLeft: '0',
-      height: '700px',
+      height: '800px',
       maxHeight: 'calc(100vh - 210px)',
       overflowY: 'auto'
     };

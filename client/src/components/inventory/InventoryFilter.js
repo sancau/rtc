@@ -109,7 +109,6 @@ class InventoryFilter extends Component {
             className={`${getButtonClass('systems')} pull-right`}
             onClick={() => onButtonClick('systems')}> Системы </button>
         </div>
-
       </div>
     );
   }

@@ -1,12 +1,7 @@
 
 .inventory-list table {
-  border: 2px solid grey;
   background-color: #fefefe;
   color: #555;
-}
-
-.inventory-list thead {
-  border-bottom: 3px solid grey;
 }
 
 .inventory-list thead th {

@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import { StickyContainer, Sticky } from 'react-sticky';
 
 import {
   getValidBefore,
@@ -59,46 +60,49 @@ class SystemsList extends Component {
     };
 
     return (
-      <div className="systems-list">
-        <hr />
-        <div className="col-xs-6 pad-0">
-          <h4> Испытательные системы </h4>
-        </div>
-        <div className="col-xs-6 pad-0">
-          <div className="pull-right">
-
-            <button
-              className={`btn btn-sm ${getButtonClass('climatic')}`}
-              onClick={showClimatic}>
-              Климатические
-            </button>
-
-            <button
-              className={`btn btn-sm ${getButtonClass('mechanic')}`}
-              onClick={showMechanic}>
-              Механические
-            </button>
-
-            <button
-              className={`btn btn-sm ${getButtonClass('all')}`}
-              onClick={showAll}>
-              Все
-            </button>
-
+      <div className="systems-list common">
+        <StickyContainer>
+          <Sticky className="sticky-list-filters">
+          <div className="col-xs-6 pad-0 list-header">
+            <h4> Испытательные системы </h4>
           </div>
-        </div>
-        <table className="table clickable">
-          <thead>
-            <tr>
-              <th>Наименование</th>
-              <th>Срок аттестации</th>
-              <th>Примечание</th>
-            </tr>
-          </thead>
-          <tbody>
-            {systems}
-          </tbody>
-        </table>
+          <div className="col-xs-6 pad-0">
+            <div className="pull-right">
+
+              <button
+                className={`btn btn-sm ${getButtonClass('climatic')}`}
+                onClick={showClimatic}>
+                Климатические
+              </button>
+
+              <button
+                className={`btn btn-sm ${getButtonClass('mechanic')}`}
+                onClick={showMechanic}>
+                Механические
+              </button>
+
+              <button
+                className={`btn btn-sm ${getButtonClass('all')}`}
+                onClick={showAll}>
+                Все
+              </button>
+
+            </div>
+          </div>
+          </Sticky>
+          <table className="table clickable">
+            <thead>
+              <tr>
+                <th>Наименование</th>
+                <th>Срок аттестации</th>
+                <th>Примечание</th>
+              </tr>
+            </thead>
+            <tbody>
+              {systems}
+            </tbody>
+          </table>
+        </StickyContainer>
       </div>
     );
   }

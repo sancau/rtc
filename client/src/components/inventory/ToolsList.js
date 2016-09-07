@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import { StickyContainer, Sticky } from 'react-sticky';
 
 import {
   getValidBefore,
@@ -21,22 +22,27 @@ class ToolsList extends Component {
     });
 
     return (
-      <div className="tools-list">
-        <hr />
-        <h4> Приборы и средства измерения </h4>
-        <table className="table clickable">
-          <thead>
-            <tr>
-              <th>Наименование</th>
-              <th>Технические характеристики</th>
-              <th>Срок поверки</th>
-              <th>Примечание</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tools}
-          </tbody>
-        </table>
+      <div className="tools-list common">
+        <StickyContainer>
+          <Sticky className="sticky-list-filters">
+            <div className="list-header">
+              <h4> Приборы и средства измерения </h4>
+            </div>
+          </Sticky>
+          <table className="table clickable">
+            <thead>
+              <tr>
+                <th>Наименование</th>
+                <th>Технические характеристики</th>
+                <th>Срок поверки</th>
+                <th>Примечание</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tools}
+            </tbody>
+          </table>
+        </StickyContainer>
       </div>
     );
   }

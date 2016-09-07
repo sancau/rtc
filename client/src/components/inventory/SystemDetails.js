@@ -7,72 +7,132 @@ import {
   getLastTestDate,
   getLastTestSertificate } from '../../helpers/inventoryHelpers';
 
+import './SystemDetails.css';
+import editIcon from '../../images/edit.svg';
+
 class SystemDetails extends Component {
+  constructor() {
+    super();
+    this.state = {
+      editMode: false
+    };
+
+    this.toggleEditMode = function() {
+      this.setState({
+        editMode: !this.state.editMode
+      });
+    }.bind(this);
+  }
+
   render() {
     const system = this.props.system;
     const lastTestDate = getLastTestDate(system);
     const lastTestSertificate = getLastTestSertificate(system);
     const validBefore = getValidBefore(system);
     const testStatusClassName = getTestStatusClassName(system);
+
+    const getElement = function(editMode, field, inputType) {
+      if (!editMode) {
+        return (
+          <td>
+            {field}
+          </td>
+        );
+      }
+      switch (inputType) {
+        case 'textarea': {
+          return (
+            <td>
+              <textarea className="form-control" />
+            </td>
+          );
+        }
+        default: {
+          return (
+            <td>
+              <input type="text" className="form-control" />
+            </td>
+          );
+        }
+      }
+    };
+
     return (
       <div className="system-details">
-        <h4>{system.name}</h4>
-        <hr />
+        <h4 className="pull-left">{system.name}</h4>
+        {
+          this.state.editMode ?
+          (
+            <div className="pull-left edit-buttons">
+              <button
+                className="btn btn-success"> Сохранить </button>
+              <button
+                onClick={this.toggleEditMode}
+                className="btn btn-danger"> Отмена </button>
+            </div>
+          ) : <img
+            onClick={this.toggleEditMode}
+            className="pull-left"
+            src={editIcon}
+            alt="Редактировать"
+            title="Редактировать" />
+        }
+
         <table className="table table-striped">
           <tbody>
             <tr>
-              <td><strong>Инвентарный номер</strong></td>
-              <td>{system.inventoryNumber}</td>
+              <td className="fit-content"><strong>Инвентарный номер</strong></td>
+              {getElement(this.state.editMode, system.inventoryNumber)}
             </tr>
             <tr>
-              <td><strong>Код</strong></td>
-              <td>{system.code}</td>
+              <td className="fit-content"><strong>Код</strong></td>
+              {getElement(this.state.editMode, system.code)}
             </tr>
             <tr>
-              <td><strong>Ед. измерения</strong></td>
-              <td>{system.unit}</td>
+              <td className="fit-content"><strong>Ед. измерения</strong></td>
+              {getElement(this.state.editMode, system.unit)}
             </tr>
             <tr>
-            <td><strong>Стоймость</strong></td>
-              <td>{system.price}</td>
+              <td className="fit-content"><strong>Стоймость</strong></td>
+              {getElement(this.state.editMode, system.price)}
             </tr>
             <tr>
-              <td><strong>Количество</strong></td>
-              <td>{system.quantity}</td>
+              <td className="fit-content"><strong>Количество</strong></td>
+              {getElement(this.state.editMode, system.quantity)}
             </tr>
             <tr>
-              <td><strong>Расположение</strong></td>
-              <td>{system.actualPlacement}</td>
+              <td className="fit-content"><strong>Расположение</strong></td>
+              {getElement(this.state.editMode, system.actualPlacement)}
             </tr>
             <tr>
-              <td><strong>Примечание</strong></td>
-              <td>{system.comment}</td>
+              <td className="fit-content"><strong>Примечание</strong></td>
+              {getElement(this.state.editMode, system.comment)}
             </tr>
             <tr>
-              <td><strong>Период аттестации (лет)</strong></td>
-              <td>{system.testPeriod}</td>
+              <td className="fit-content"><strong>Период аттестации (лет)</strong></td>
+              {getElement(this.state.editMode, system.testPeriod)}
             </tr>
             <tr>
-              <td><strong>Производитель</strong></td>
-              <td>{system.manufacturer}</td>
+              <td className="fit-content"><strong>Производитель</strong></td>
+              {getElement(this.state.editMode, system.manufacturer)}
             </tr>
             <tr>
-              <td><strong>Год выпуска</strong></td>
-              <td>{system.yearOfProduction}</td>
+              <td className="fit-content"><strong>Год выпуска</strong></td>
+              {getElement(this.state.editMode, system.yearOfProduction)}
             </tr>
             <tr>
-              <td><strong>Технические характеристики</strong></td>
-              <td>{system.techDetails}</td>
+              <td className="fit-content"><strong>Технические характеристики</strong></td>
+              {getElement(this.state.editMode, system.techDetails, 'textarea')}
             </tr>
             <tr>
-              <td><strong>Назначение</strong></td>
+              <td className="fit-content"><strong>Назначение</strong></td>
               <td>
                 {system.purpose === 'climatic' ?
                 'Климатические испытания' : 'Механические испытания'}
               </td>
             </tr>
             <tr>
-              <td><strong>Срок аттестации</strong></td>
+              <td className="fit-content"><strong>Срок аттестации</strong></td>
               <td className={testStatusClassName}>{validBefore}</td>
             </tr>
             <tr>
@@ -80,7 +140,7 @@ class SystemDetails extends Component {
               <td>{lastTestDate}</td>
             </tr>
             <tr>
-              <td><strong>Номер свидетельства</strong></td>
+              <td className="fit-content"><strong>Номер свидетельства</strong></td>
               <td>{lastTestSertificate}</td>
             </tr>
           </tbody>

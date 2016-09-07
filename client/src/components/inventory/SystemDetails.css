@@ -1,0 +1,23 @@
+
+.system-details img {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  width: 30px;
+  height: 30px;
+  opacity: 0.5;
+}
+
+.system-details img:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.system-details .edit-buttons {
+  margin-left: 10px;
+  opacity: 0.7;
+}
+
+.system-details table .fit-content {
+  width: 1%;
+  white-space: nowrap;
+}

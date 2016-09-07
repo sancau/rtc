@@ -1,12 +1,15 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { StickyContainer, Sticky } from 'react-sticky';
 
 import InventoryFilter from './InventoryFilter';
 import InventoryList from './InventoryList';
 
 import { fetchItems, filterItems } from '../../actions/inventoryActions';
 import { mergeDeep } from '../../helpers/utils';
+
+import './Inventory.css';
 
 
 class Inventory extends Component {
@@ -66,17 +69,20 @@ class Inventory extends Component {
   render() {
     return (
       <div className="inventory">
-        <h2> Инвентарь </h2>
-        <hr />
-        <InventoryFilter
-          updateQuery={this.updateQuery}
-          query={this.query}
-        />
-        <InventoryList
-          items={this.props.items}
-          updateQuery={this.updateQuery}
-          query={this.query}
-        />
+        <StickyContainer>
+          <h2> Инвентарь </h2>
+          <Sticky className="sticky-filters">
+            <InventoryFilter
+              updateQuery={this.updateQuery}
+              query={this.query}
+            />
+          </Sticky>
+          <InventoryList
+            items={this.props.items}
+            updateQuery={this.updateQuery}
+            query={this.query}
+          />
+        </StickyContainer>
       </div>
     );
   }

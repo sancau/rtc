@@ -1,0 +1,13 @@
+.inventory .sticky-filters {
+  background-color: #336699;
+  padding: 20px 0px 20px 0px;
+  z-index: 1;
+}
+
+.inventory .common .sticky-list-filters {
+  background-color: #336699;
+}
+
+.inventory .common .list-header {
+  padding-bottom: 10px;
+}

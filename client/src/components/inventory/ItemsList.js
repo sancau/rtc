@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import { StickyContainer, Sticky } from 'react-sticky';
 
 import './ItemsList.css';
 
@@ -68,52 +69,55 @@ class ItemsList extends Component {
     };
 
     return (
-      <div className="items-list">
-        <hr />
-        <div className="col-xs-6 pad-0">
-          <h4> Прочие позиции </h4>
-        </div>
-        <div className="col-xs-6 pad-0">
-          <div className="pull-right">
+      <div className="items-list common">
+        <StickyContainer>
+          <Sticky className="sticky-list-filters">
+            <div className="col-xs-6 pad-0 list-header">
+              <h4> Прочие позиции </h4>
+            </div>
+            <div className="col-xs-6 pad-0">
+              <div className="pull-right">
 
-            <button
-              className={`btn btn-sm ${getButtonClass('computer')}`}
-              onClick={showComputer}>
-              Компьютеры
-            </button>
+                <button
+                  className={`btn btn-sm ${getButtonClass('computer')}`}
+                  onClick={showComputer}>
+                  Компьютеры
+                </button>
 
-            <button
-              className={`btn btn-sm ${getButtonClass('furniture')}`}
-              onClick={showFurniture}>
-              Мебель
-            </button>
+                <button
+                  className={`btn btn-sm ${getButtonClass('furniture')}`}
+                  onClick={showFurniture}>
+                  Мебель
+                </button>
 
-            <button
-              className={`btn btn-sm ${getButtonClass('instrument')}`}
-              onClick={showInstrument}>
-              Инструменты и оборудование
-            </button>
+                <button
+                  className={`btn btn-sm ${getButtonClass('instrument')}`}
+                  onClick={showInstrument}>
+                  Инструменты и оборудование
+                </button>
 
-            <button
-              className={`btn btn-sm ${getButtonClass('all')}`}
-              onClick={showAll}>
-              Все
-            </button>
+                <button
+                  className={`btn btn-sm ${getButtonClass('all')}`}
+                  onClick={showAll}>
+                  Все
+                </button>
 
-          </div>
-        </div>
-        <table className="table clickable">
-          <thead>
-            <tr>
-              <th>Наименование</th>
-              <th>Категория</th>
-              <th>Примечание</th>
-            </tr>
-          </thead>
-          <tbody>
-            {items}
-          </tbody>
-        </table>
+              </div>
+            </div>
+          </Sticky>
+          <table className="table clickable">
+            <thead>
+              <tr>
+                <th>Наименование</th>
+                <th>Категория</th>
+                <th>Примечание</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items}
+            </tbody>
+          </table>
+        </StickyContainer>
       </div>
     );
   }
