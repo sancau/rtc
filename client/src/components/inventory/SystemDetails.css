@@ -12,11 +12,6 @@
   cursor: pointer;
 }
 
-.system-details .edit-buttons {
-  margin-left: 10px;
-  opacity: 0.7;
-}
-
 .system-details table .fit-content {
   width: 1%;
   white-space: nowrap;
