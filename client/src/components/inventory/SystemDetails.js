@@ -1,10 +1,19 @@
 
 import React, { Component } from 'react';
 
+import {
+  getValidBefore,
+  getTestStatusClassName,
+  getLastTestDate,
+  getLastTestSertificate } from '../../helpers/inventoryHelpers';
 
 class SystemDetails extends Component {
   render() {
     const system = this.props.system;
+    const lastTestDate = getLastTestDate(system);
+    const lastTestSertificate = getLastTestSertificate(system);
+    const validBefore = getValidBefore(system);
+    const testStatusClassName = getTestStatusClassName(system);
     return (
       <div className="system-details">
         <h4>{system.name}</h4>
@@ -58,9 +67,21 @@ class SystemDetails extends Component {
             <tr>
               <td><strong>Назначение</strong></td>
               <td>
-              {system.purpose === 'climatic' ?
-              'Климатические испытания' : 'Механические испытания'}
+                {system.purpose === 'climatic' ?
+                'Климатические испытания' : 'Механические испытания'}
               </td>
+            </tr>
+            <tr>
+              <td><strong>Срок аттестации</strong></td>
+              <td className={testStatusClassName}>{validBefore}</td>
+            </tr>
+            <tr>
+              <td><strong>Дата последней аттестации</strong></td>
+              <td>{lastTestDate}</td>
+            </tr>
+            <tr>
+              <td><strong>Номер свидетельства</strong></td>
+              <td>{lastTestSertificate}</td>
             </tr>
           </tbody>
         </table>

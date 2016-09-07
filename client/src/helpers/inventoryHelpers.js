@@ -1,4 +1,19 @@
 
+export function getLastTestDate(obj) {
+  let lastTest = obj.tests.slice(-1).pop();
+  let date = new Date(lastTest.date);
+  return  date.toLocaleString('ru', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+
+export function getLastTestSertificate(obj) {
+  let lastTest = obj.tests.slice(-1).pop();
+  return lastTest.sertificate;
+}
+
 export function getValidBefore(obj) {
   let lastTest = obj.tests.slice(-1).pop();
   let date = new Date(lastTest.date);

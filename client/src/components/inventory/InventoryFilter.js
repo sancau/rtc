@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 
 import './InventoryFilter.css'
+import clearInputImage from '../../images/cancel.svg';
 
 
 class InventoryFilter extends Component {
@@ -55,6 +56,11 @@ class InventoryFilter extends Component {
           }
           break;
         }
+        case 'clearInput': {
+          query.queryString = '';
+          this.refs.searchInput.value = '';
+          break;
+        }
         default: return;
       }
       this.props.updateQuery(query);
@@ -63,11 +69,27 @@ class InventoryFilter extends Component {
     return (
       <div className="inventory-filter row">
         <div className="col-xs-4">
-          <input
-            className="form-control"
-            onChange={handleQueryStringChange}
-            type="text"
-            placeholder="Поиск" />
+          <table className="input-table">
+            <tbody>
+            <tr>
+              <td>
+                <input
+                  ref="searchInput"
+                  className="form-control"
+                  onChange={handleQueryStringChange}
+                  type="text"
+                  placeholder="Поиск" />
+              </td>
+              <td>
+                <img
+                  alt="Сброс"
+                  title="Сброс"
+                  onClick={() => onButtonClick('clearInput')}
+                  src={clearInputImage} />
+              </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
 
         <div className="col-xs-8">
