@@ -42,12 +42,11 @@ class InventoryList extends Component {
       color: '#555',
       width: '90%',
       left: '5%',
-      top: '10%',
+      top: '3%',
+      height: '95%',
       marginTop: '0',
       marginLeft: '0',
-      height: '800px',
-      maxHeight: 'calc(100vh - 210px)',
-      overflowY: 'auto'
+      overflowY: 'auto',
     };
 
     return (
@@ -79,7 +78,10 @@ class InventoryList extends Component {
           dialogStyles={modalStyles}>
 
           {this.active && this.active.type === 'systems' ?
-            <SystemDetails system={this.active} /> : null}
+            <SystemDetails
+              saveDocument={this.props.saveDocument}
+              deleteDocument={this.props.deleteDocument}
+              system={this.active}  /> : null}
 
           {this.active && this.active.type === 'tools' ?
             <ToolDetails tool={this.active} /> : null}

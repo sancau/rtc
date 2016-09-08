@@ -45,6 +45,14 @@ export default function reducer(state=initialState, action) {
       console.error(action.payload);
       return state;
     }
+    case 'SAVE_DOCUMENT_FULFILLED': {
+      console.log(action);
+      return state;
+    }
+    case 'SAVE_DOCUMENT_REJECTED': {
+      console.log(action);
+      return state;
+    }
 
     default: return state;
   }

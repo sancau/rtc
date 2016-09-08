@@ -5,7 +5,9 @@ import DetailsHeader from './DetailsHeader';
 import SystemDetailsTable from './SystemDetailsTable';
 import SystemForm from './SystemForm';
 
-import { mergeDeep } from '../../helpers/utils';
+import { mergeDeep, dateToStr, strToDate } from '../../helpers/utils';
+
+import { saveDocument } from '../../actions/inventoryActions';
 
 import './SystemDetails.css';
 
@@ -25,13 +27,23 @@ class SystemDetails extends Component {
 
   render() {
     const model = mergeDeep({}, this.props.system);
+    let test = model.tests.slice(-1).pop();
+    let date = new Date(test.date);
+    model.lastTestDate = dateToStr(date);
+    model.sertificate = test.sertificate;
 
-    const onSave = function() {
-      console.log(model);
+    const onSave = function(model) {
+      let date = strToDate(model.lastTestDate);
+      let sertificate = model.sertificate;
+      let test = model.tests.pop();
+      test.date = date;
+      test.sertificate = sertificate;
+      model.tests.push(test);
+      this.props.saveDocument(model);
     }.bind(this);
 
-    const onDelete = function() {
-      console.log('Deleting..');
+    const onDelete = function(model) {
+      this.props.deleteDocument(model);
     }.bind(this);
 
     return (
@@ -39,8 +51,8 @@ class SystemDetails extends Component {
         <DetailsHeader
           title={this.props.system.name}
           editMode={this.state.editMode}
-          onSave={onSave}
-          onDelete={onDelete}
+          onSave={() => onSave(model)}
+          onDelete={() => onDelete(model)}
           toggleEditMode={this.toggleEditMode} />
         {
           this.state.editMode ?

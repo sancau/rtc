@@ -6,7 +6,12 @@ import { StickyContainer, Sticky } from 'react-sticky';
 import InventoryFilter from './InventoryFilter';
 import InventoryList from './InventoryList';
 
-import { fetchItems, filterItems } from '../../actions/inventoryActions';
+import {
+  fetchItems,
+  filterItems,
+  saveDocument,
+  deleteDocument } from '../../actions/inventoryActions';
+
 import { mergeDeep } from '../../helpers/utils';
 
 import './Inventory.css';
@@ -60,6 +65,14 @@ class Inventory extends Component {
       Object.assign(this.query, data);
       this.props.dispatch(filterItems(this.query));
     }.bind(this);
+
+    this.saveDocument = function (doc) {
+      this.props.dispatch(saveDocument(doc));
+    }.bind(this);
+
+    this.deleteDocument = function (doc) {
+      this.props.dispatch(deleteDocument(doc));
+    }.bind(this);
   }
 
   componentWillMount() {
@@ -81,6 +94,8 @@ class Inventory extends Component {
             items={this.props.items}
             updateQuery={this.updateQuery}
             query={this.query}
+            saveDocument={this.saveDocument}
+            deleteDocument={this.deleteDocument}
           />
         </StickyContainer>
       </div>
