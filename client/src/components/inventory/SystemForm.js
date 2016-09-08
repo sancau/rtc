@@ -9,8 +9,11 @@ class SystemForm extends Component {
     this.state = {};
   }
 
+  componentWillMount() {
+    this.setState({model: this.props.model});
+  }
+
   render() {
-    this.state.model = this.props.model;
     const handleChange = (e, field) => {
       this.props.model[field] = e.target.value;
       this.setState({model: this.props.model});

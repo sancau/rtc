@@ -1,6 +1,8 @@
 
 let initialState = {
-  items: []
+  items: [],
+  detailsModalVisible: false,
+  active: null
 };
 
 export default function reducer(state=initialState, action) {
@@ -46,12 +48,35 @@ export default function reducer(state=initialState, action) {
       return state;
     }
     case 'SAVE_DOCUMENT_FULFILLED': {
-      console.log(action);
+      window.alert('Сохранено');
       return state;
     }
     case 'SAVE_DOCUMENT_REJECTED': {
-      console.log(action);
+      window.alert('Ошибка');
       return state;
+    }
+    case 'DELETE_DOCUMENT_FULFILLED': {
+
+      window.alert('Удалено');
+      return state;
+    }
+    case 'DELETE_DOCUMENT_REJECTED': {
+      window.alert('Ошибка');
+      return state;
+    }
+    case 'SHOW_DETAILS': {
+      return {
+        ...state,
+        detailsModalVisible: true,
+        active: action.payload
+      }
+    }
+    case 'CLOSE_DETAILS': {
+      return {
+        ...state,
+        active: null,
+        detailsModalVisible: false
+      }
     }
 
     default: return state;

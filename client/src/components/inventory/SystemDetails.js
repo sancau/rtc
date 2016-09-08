@@ -7,8 +7,6 @@ import SystemForm from './SystemForm';
 
 import { mergeDeep, dateToStr, strToDate } from '../../helpers/utils';
 
-import { saveDocument } from '../../actions/inventoryActions';
-
 import './SystemDetails.css';
 
 class SystemDetails extends Component {

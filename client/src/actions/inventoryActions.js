@@ -36,6 +36,8 @@ export function saveDocument(document) {
       let response =
       yield axios.put(`${API_URL}/${document.type}/${document._id}`, document);
       dispatch({type: 'SAVE_DOCUMENT_FULFILLED', payload: response});
+      dispatch({type: 'CLOSE_DETAILS'});
+      dispatch(fetchItems());
     })(document).catch((err) => {
       dispatch({type: 'SAVE_DOCUMENT_REJECTED', payload: err});
     });
@@ -49,8 +51,24 @@ export function deleteDocument(document) {
       let response =
         yield axios.delete(`${API_URL}/${document.type}/${_id}`);
       dispatch({type: 'DELETE_DOCUMENT_FULFILLED', payload: {response, _id}});
+      dispatch({type: 'CLOSE_DETAILS'});
+      dispatch(fetchItems());
     })(document).catch((err) => {
       dispatch({type: 'DELETE_DOCUMENT_REJECTED', payload: err});
     });
   }
+}
+
+export function showDetails(document) {
+  return {
+    type: 'SHOW_DETAILS',
+    payload: document
+  };
+}
+
+export function closeDetails() {
+  return {
+    type: 'CLOSE_DETAILS',
+    payload: {}
+  };
 }

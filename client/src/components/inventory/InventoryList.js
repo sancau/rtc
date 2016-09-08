@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import SkyLight from 'react-skylight';
+import { SkyLightStateless } from 'react-skylight';
 
 import SystemsList from './SystemsList';
 import ToolsList from './ToolsList';
@@ -14,16 +14,6 @@ import './InventoryList.css';
 
 
 class InventoryList extends Component {
-  constructor() {
-    super();
-    this.active = null;
-    this.showDetails = function(obj) {
-      this.active = obj;
-      this.forceUpdate();
-      this.refs.dialog.show();
-    }.bind(this);
-  }
-
   render() {
 
     const itemsArray = this.props.items.filter((item) => {
@@ -49,6 +39,10 @@ class InventoryList extends Component {
       overflowY: 'auto',
     };
 
+    const detailsModalVisible = this.props.detailsModalVisible;
+    const active = this.props.active;
+    const closeDetails = this.props.closeDetails;
+
     return (
       <div className="inventory-list">
         {systemsArray.length ?
@@ -56,40 +50,41 @@ class InventoryList extends Component {
             updateQuery={this.props.updateQuery}
             query={this.props.query}
             systems={systemsArray}
-            onRowClick={this.showDetails} /> : null}
+            onRowClick={this.props.showDetails} /> : null}
 
         {toolsArray.length ?
           <ToolsList
             updateQuery={this.props.updateQuery}
             query={this.props.query}
             tools={toolsArray}
-            onRowClick={this.showDetails} /> : null}
+            onRowClick={this.props.showDetails} /> : null}
 
         {itemsArray.length ?
           <ItemsList
             updateQuery={this.props.updateQuery}
             query={this.props.query}
             items={itemsArray}
-            onRowClick={this.showDetails} /> : null}
+            onRowClick={this.props.showDetails} /> : null}
 
-        <SkyLight
-          hideOnOverlayClicked
-          ref="dialog"
+        <SkyLightStateless
+          onCloseClicked={this.props.closeDetails}
+          onOverlayClicked={this.props.closeDetails}
+          isVisible={detailsModalVisible}
           dialogStyles={modalStyles}>
 
-          {this.active && this.active.type === 'systems' ?
+          {active && active.type === 'systems' ?
             <SystemDetails
               saveDocument={this.props.saveDocument}
               deleteDocument={this.props.deleteDocument}
-              system={this.active}  /> : null}
+              system={active}  /> : null}
 
-          {this.active && this.active.type === 'tools' ?
-            <ToolDetails tool={this.active} /> : null}
+          {active && active.type === 'tools' ?
+            <ToolDetails tool={active} /> : null}
 
-          {this.active && this.active.type === 'items' ?
-            <ItemDetails item={this.active} /> : null}
+          {active && active.type === 'items' ?
+            <ItemDetails item={active} /> : null}
 
-        </SkyLight>
+        </SkyLightStateless>
       </div>
     );
   }

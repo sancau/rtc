@@ -10,7 +10,9 @@ import {
   fetchItems,
   filterItems,
   saveDocument,
-  deleteDocument } from '../../actions/inventoryActions';
+  deleteDocument,
+  showDetails,
+  closeDetails } from '../../actions/inventoryActions';
 
 import { mergeDeep } from '../../helpers/utils';
 
@@ -73,6 +75,14 @@ class Inventory extends Component {
     this.deleteDocument = function (doc) {
       this.props.dispatch(deleteDocument(doc));
     }.bind(this);
+
+    this.showDetails = function (doc) {
+      this.props.dispatch(showDetails(doc));
+    }.bind(this);
+
+    this.closeDetails = function() {
+      this.props.dispatch(closeDetails());
+    }.bind(this);
   }
 
   componentWillMount() {
@@ -96,6 +106,10 @@ class Inventory extends Component {
             query={this.query}
             saveDocument={this.saveDocument}
             deleteDocument={this.deleteDocument}
+            active={this.props.active}
+            detailsModalVisible={this.props.detailsModalVisible}
+            showDetails={this.showDetails}
+            closeDetails={this.closeDetails}
           />
         </StickyContainer>
       </div>
@@ -105,7 +119,9 @@ class Inventory extends Component {
 
 function mapState(state) {
   return {
-    items: state.inventory.items
+    items: state.inventory.items,
+    detailsModalVisible: state.inventory.detailsModalVisible,
+    active: state.inventory.active
   };
 }
 
