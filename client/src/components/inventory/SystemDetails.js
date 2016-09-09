@@ -7,7 +7,7 @@ import SystemForm from './SystemForm';
 
 import { mergeDeep, dateToStr, strToDate } from '../../helpers/utils';
 
-import './SystemDetails.css';
+import './ObjectDetails.css';
 
 class SystemDetails extends Component {
   constructor() {

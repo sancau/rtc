@@ -78,10 +78,16 @@ class InventoryList extends Component {
               system={active}  /> : null}
 
           {active && active.type === 'tools' ?
-            <ToolDetails tool={active} /> : null}
+            <ToolDetails
+              tool={active}
+              saveDocument={this.props.saveDocument}
+              deleteDocument={this.props.deleteDocument} /> : null}
 
           {active && active.type === 'items' ?
-            <ItemDetails item={active} /> : null}
+            <ItemDetails
+              item={active}
+              saveDocument={this.props.saveDocument}
+              deleteDocument={this.props.deleteDocument} /> : null}
 
         </SkyLightStateless>
       </div>
