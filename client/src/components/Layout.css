@@ -4,6 +4,10 @@ button {
   padding: 5px;
 }
 
+.layout .navigation button {
+  margin: 0px 0px 20px 0px;
+}
+
 /*.active button {
   border: 2px solid black;
   border-radius: 5px;
