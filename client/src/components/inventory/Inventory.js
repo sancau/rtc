@@ -16,6 +16,8 @@ import {
 
 import { mergeDeep } from '../../helpers/utils';
 
+import addObjectImage from '../../images/plus.svg';
+
 import './Inventory.css';
 
 
@@ -93,7 +95,19 @@ class Inventory extends Component {
     return (
       <div className="inventory">
         <StickyContainer>
-          <h2> Инвентарь </h2>
+          <div className="row">
+            <div className="col-xs-4">
+              <h2> Инвентарь </h2>
+            </div>
+            <div className="col-xs-8">
+              <img
+                className="add-img pull-right"
+                alt="Добавить запись"
+                title="Добавить запись"
+                onClick={() => console.log('add')}
+                src={addObjectImage} />
+            </div>
+          </div>
           <Sticky className="sticky-filters">
             <InventoryFilter
               updateQuery={this.updateQuery}

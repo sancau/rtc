@@ -94,7 +94,7 @@ class InventoryFilter extends Component {
 
         <div className="col-xs-8">
           <button
-            className='btn btn-primary btn pull-right'
+            className='btn btn-primary btn pull-right margin-right-0'
             onClick={() => onButtonClick('all')}> Показать всё </button>
 
           <button
