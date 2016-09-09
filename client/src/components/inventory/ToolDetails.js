@@ -44,7 +44,7 @@ class ToolDetails extends Component {
     }.bind(this);
 
     return (
-      <div className="tool-details">
+      <div className="tool-details object-details">
         <DetailsHeader
           title={this.props.tool.name}
           editMode={this.state.editMode}

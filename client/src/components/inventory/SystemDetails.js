@@ -45,7 +45,7 @@ class SystemDetails extends Component {
     }.bind(this);
 
     return (
-      <div className="system-details">
+      <div className="system-details object-details">
         <DetailsHeader
           title={this.props.system.name}
           editMode={this.state.editMode}
