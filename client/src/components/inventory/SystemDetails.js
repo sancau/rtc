@@ -26,9 +26,11 @@ class SystemDetails extends Component {
   render() {
     const model = mergeDeep({}, this.props.system);
     let test = model.tests.slice(-1).pop();
-    let date = new Date(test.date);
-    model.lastTestDate = dateToStr(date);
-    model.sertificate = test.sertificate;
+    if (test != null) {
+      let date = new Date(test.date);
+      model.lastTestDate = dateToStr(date);
+      model.sertificate = test.sertificate;
+    }
 
     const onSave = function(model) {
       let date = strToDate(model.lastTestDate);

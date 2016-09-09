@@ -24,7 +24,8 @@ const options = {
 let initialState = {
   items: [],
   detailsModalVisible: false,
-  active: null
+  active: null,
+  newModalVisible: false
 };
 
 export default function reducer(state=initialState, action) {
@@ -85,6 +86,14 @@ export default function reducer(state=initialState, action) {
       toastr.error('Ошибка', null, options);
       return state;
     }
+    case 'ADD_DOCUMENT_FULFILLED': {
+      toastr.success('Позиция добавлена', null, options);
+      return state;
+    }
+    case 'ADD_DOCUMENT_REJECTED': {
+      toastr.error('Ошибка', null, options);
+      return state;
+    }
     case 'SHOW_DETAILS': {
       return {
         ...state,
@@ -97,6 +106,18 @@ export default function reducer(state=initialState, action) {
         ...state,
         active: null,
         detailsModalVisible: false
+      }
+    }
+    case 'SHOW_NEW': {
+      return {
+        ...state,
+        newModalVisible: true
+      }
+    }
+    case 'CLOSE_NEW': {
+      return {
+        ...state,
+        newModalVisible: false
       }
     }
 

@@ -6,13 +6,18 @@ import { StickyContainer, Sticky } from 'react-sticky';
 import InventoryFilter from './InventoryFilter';
 import InventoryList from './InventoryList';
 
+import NewObject from './NewObject';
+
 import {
   fetchItems,
   filterItems,
   saveDocument,
   deleteDocument,
   showDetails,
-  closeDetails } from '../../actions/inventoryActions';
+  closeDetails,
+  showNew,
+  closeNew,
+  addDocument } from '../../actions/inventoryActions';
 
 import { mergeDeep } from '../../helpers/utils';
 
@@ -85,6 +90,14 @@ class Inventory extends Component {
     this.closeDetails = function() {
       this.props.dispatch(closeDetails());
     }.bind(this);
+
+    this.closeNew = function() {
+      this.props.dispatch(closeNew());
+    }.bind(this);
+
+    this.addObject = function(data) {
+      this.props.dispatch(addDocument(data));
+    }.bind(this);
   }
 
   componentWillMount() {
@@ -104,10 +117,17 @@ class Inventory extends Component {
                 className="add-img pull-right"
                 alt="Добавить запись"
                 title="Добавить запись"
-                onClick={() => console.log('add')}
+                onClick={() => this.props.dispatch(showNew())}
                 src={addObjectImage} />
             </div>
           </div>
+
+          <NewObject
+            close={this.closeNew}
+            visible={this.props.newModalVisible}
+            addObject={this.addObject}>
+          </NewObject>
+
           <Sticky className="sticky-filters">
             <InventoryFilter
               updateQuery={this.updateQuery}
@@ -135,7 +155,8 @@ function mapState(state) {
   return {
     items: state.inventory.items,
     detailsModalVisible: state.inventory.detailsModalVisible,
-    active: state.inventory.active
+    active: state.inventory.active,
+    newModalVisible: state.inventory.newModalVisible
   };
 }
 

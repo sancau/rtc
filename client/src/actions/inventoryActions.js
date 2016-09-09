@@ -59,6 +59,20 @@ export function deleteDocument(document) {
   }
 }
 
+export function addDocument(data) {
+  return function(dispatch) {
+    Promise.coroutine(function* (data) {
+      let url = `${API_URL}/${data.type}`;
+      let response = yield axios.post(url, data);
+      dispatch({type: 'ADD_DOCUMENT_FULFILLED', payload: {response}});
+      dispatch({type: 'CLOSE_NEW'});
+      dispatch(fetchItems());
+    })(data).catch((err) => {
+      dispatch({type: 'ADD_DOCUMENT_REJECTED', payload: err});
+    });
+  }
+}
+
 export function showDetails(document) {
   return {
     type: 'SHOW_DETAILS',
@@ -71,4 +85,18 @@ export function closeDetails() {
     type: 'CLOSE_DETAILS',
     payload: {}
   };
+}
+
+export function showNew() {
+  return {
+    type: 'SHOW_NEW',
+    payload: {}
+  };
+}
+
+export function closeNew() {
+  return {
+    type: 'CLOSE_NEW',
+    payload: {}
+  }
 }
