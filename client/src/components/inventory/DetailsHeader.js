@@ -20,7 +20,12 @@ class DetailsHeader extends Component {
                 onClick={this.props.toggleEditMode}
                 className="btn btn-warning"> Отмена </button>
               <button
-                onClick={this.props.onDelete}
+                onClick={() => {
+                  // ugly temporary shit :)
+                  if (window.confirm('Подтвердите УДАЛЕНИЕ ЗАПИСИ')) {
+                    this.props.onDelete();
+                  }
+                }}
                 className="btn btn-danger"> Удалить запись </button>
             </div>
           ) : <img
