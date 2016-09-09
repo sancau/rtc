@@ -1,3 +1,25 @@
+// TEMP solution for popups
+// TO BE REVISED
+import 'jquery';
+import * as toastr from 'toastr';
+
+const options = {
+  "closeButton": false,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-full-width",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "200",
+  "hideDuration": "500",
+  "timeOut": "2000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+};
 
 let initialState = {
   items: [],
@@ -48,20 +70,19 @@ export default function reducer(state=initialState, action) {
       return state;
     }
     case 'SAVE_DOCUMENT_FULFILLED': {
-      window.alert('Сохранено');
+      toastr.success('Изменения сохранены', null, options);
       return state;
     }
     case 'SAVE_DOCUMENT_REJECTED': {
-      window.alert('Ошибка');
+      toastr.error('Ошибка', null, options);
       return state;
     }
     case 'DELETE_DOCUMENT_FULFILLED': {
-
-      window.alert('Удалено');
+      toastr.warning('Запись удалена', null, options);
       return state;
     }
     case 'DELETE_DOCUMENT_REJECTED': {
-      window.alert('Ошибка');
+      toastr.error('Ошибка', null, options);
       return state;
     }
     case 'SHOW_DETAILS': {

@@ -41,7 +41,6 @@ class InventoryList extends Component {
 
     const detailsModalVisible = this.props.detailsModalVisible;
     const active = this.props.active;
-    const closeDetails = this.props.closeDetails;
 
     return (
       <div className="inventory-list">
