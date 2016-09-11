@@ -2,7 +2,7 @@
 import axios from 'axios';
 import Promise from 'bluebird';
 
-const API_URL = 'http://localhost:5000/inventory';
+const API_URL = 'http://sqlisp:5000/inventory';
 
 export function filterItems(query) {
   return {

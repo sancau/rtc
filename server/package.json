@@ -4,7 +4,7 @@
   "description": "Server side application for rtc intronet / toolset",
   "scripts": {
     "start": "node src/server.js 5000 dep73",
-    "dev": "nodemon src/server.js 5000 dep73-dev mongodb://localhost:27017",
+    "dev": "nodemon src/server.js 5000 dep73 mongodb://localhost:27017",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

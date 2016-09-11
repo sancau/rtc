@@ -1,14 +1,8 @@
 
 button {
-  margin-right: 10px;
-  padding: 5px;
+  margin-right: 10px !important;
 }
 
 .layout .navigation button {
-  margin: 0px 0px 20px 0px;
+  margin: 0px 0px 20px 0px !important;
 }
-
-/*.active button {
-  border: 2px solid black;
-  border-radius: 5px;
-}*/

@@ -10,6 +10,8 @@ import Test from './components/test/Test';
 
 import store from './store'
 
+import 'bootstrap3/dist/css/bootstrap.css';
+import 'toastr/build/toastr.css';
 import './index.css';
 
 
