@@ -6,7 +6,6 @@ import { Provider } from 'react-redux';
 
 import Layout from './components/Layout';
 import Inventory from './components/inventory/Inventory';
-import Test from './components/test/Test';
 
 import store from './store'
 
@@ -21,7 +20,6 @@ ReactDOM.render(
       <Route path="/" component={Layout}>
         <IndexRoute component={Inventory}></IndexRoute>
         <Route path="inventory" component={Inventory}></Route>
-        <Route path="test" component={Test}></Route>
       </Route>
     </Router>
   </Provider>,
