@@ -34,7 +34,7 @@ class TemperatureDataPreprocessor:
         md = Sensor(name='md', values=meta.md)
         result.append(cp)
         result.append(md)
-        
+
         return result
 
     def getMergedChunk(self, *, data_chunks, meta):
@@ -50,7 +50,7 @@ class TemperatureDataPreprocessor:
         for i in range(0, len(merged)):
             sliced = merged[i:i + meta.slice_length]
             if len(sliced) == meta.slice_length == len(meta.cp) == len(meta.md):
-                print('Yielding a chunk..')
+                print('Yielding next chunk..')
                 yield self._populate_sensors(sliced, meta)
             else:
                 print('Invalid data slice or meta data length. Skipping')

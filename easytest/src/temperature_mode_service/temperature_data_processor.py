@@ -27,35 +27,6 @@ class TemperatureDataProcessor:
         """
         return True and data # can be specified later
 
-    def _calculate(self, data):
-        """
-        Calculates all the values that are required to determine
-        the result.
-
-        Returns a dict of calculated values.
-        """
-        print([sensor.name for sensor in data])
-        print([sensor.values for sensor in data if sensor.name == '16'])
-
-        # got array of sensor object containing data. need to calculate
-        # all the nessecary data and pass along to _get_result to apply domain
-        # specific logic
-
-        return {}
-
-    def _get_result(self, calculated_data):
-        """
-        Applyes domain specific logic to the given dict of
-        calculated results.
-
-        Returns a dict contaning resolution of the test and
-        the resulting values.
-        """
-        
-        # NOT IMPLEMENTED
-
-        return {'success': True, 'values': {}}
-
     def process(self, data):
         """
         Processing the given data.
@@ -67,19 +38,24 @@ class TemperatureDataProcessor:
             if not self._validate_input(data):
                 res['reason'] = INVALID_DATA
                 return res
-
-            calculated = self._calculate(data)
-            result = self._get_result(calculated)
-            if result['success']:
-                res['done'] = True
-                res['reason'] = TEST_SUCCESS
-                res['values'] = result['values']
-                return res
-
-            else:
+            amplitudes = []
+            for sensor in data:
+                amplitudes.append(sensor.negative_deviation)
+                amplitudes.append(sensor.positive_deviation)
+            max_amplitude = max(amplitudes)
+            print('\nMAX AMPLITUDE: %s \n' % max_amplitude)
+            if max_amplitude >= 0.5:
                 res['reason'] = TEST_FAIL
+                return res
+            result_values = {}
 
+            # MAX AMPLITED HERE < 0.5
+            # CAN GO ON WITH TEST LOGIC FROM HERE
+
+            res['done'] = True
+            res['reason'] = TEST_SUCCESS
+            res['values'] = result_values
+            return res
         except Exception as e:
             res['reason'] = e
-
         return res

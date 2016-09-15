@@ -7,7 +7,7 @@ from temperature_data_parser import TemperatureDataParser
 from temperature_data_preprocessor import TemperatureDataPreprocessor
 from temperature_data_processor import TemperatureDataProcessor
 
-# lets emulate we have some json input recieved by the service via REST
+# let's emulate we have some json input recieved by the service via JSON API
 
 fake_cp_md = [0 for i in range(0,10)]
 TEST_INPUT = {
@@ -50,12 +50,11 @@ def handle_temperature_mode(meta):
         data_chunks=data_chunks,
         meta=meta):
         res = processor.process(chunk)
-        print(res)
+        print('\n %s \n' % res)
         if res['done']:
             print('Result recieved.')
-            print(res)
-            break
+            return res
     else:
         print('Could not find a chunk that\'s passing the test.')
 
-handle_temperature_mode(meta)
+TEST_RESULT = handle_temperature_mode(meta)
