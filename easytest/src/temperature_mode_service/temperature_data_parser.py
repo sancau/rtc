@@ -17,13 +17,16 @@ DEFAULT_DATA_CONFIG = {
 
 class TemperatureDataParser:
     """
-    Provides functionality to parse a digital thermometer data from it's log files.
+    Provides functionality to parse a digital thermometer
+    data from it's log files.
 
     It has one interface method - parse(file_path).
     Parse returns a tuple of (iterations[], date, time).
 
-    The class constructor requires 2 kw arguments 'sensors_count' and 'digits'.
-    The second one controls the number of digits the data values to be rounded to.
+    The class constructor requires 2 kw arguments
+    'sensors_count' and 'digits'.
+    The second one controls the number of digits 
+    the data values to be rounded to.
     """
     def __init__(self, *, sensors_count, digits, config=DEFAULT_DATA_CONFIG):
         self._sensors_count = sensors_count

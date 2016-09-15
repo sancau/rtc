@@ -34,6 +34,13 @@ class TemperatureDataProcessor:
 
         Returns a dict of calculated values.
         """
+        print([sensor.name for sensor in data])
+        print([sensor.values for sensor in data if sensor.name == '16'])
+
+        # got array of sensor object containing data. need to calculate
+        # all the nessecary data and pass along to _get_result to apply domain
+        # specific logic
+
         return {}
 
     def _get_result(self, calculated_data):
@@ -44,7 +51,10 @@ class TemperatureDataProcessor:
         Returns a dict contaning resolution of the test and
         the resulting values.
         """
-        return {}
+        
+        # NOT IMPLEMENTED
+
+        return {'success': True, 'values': {}}
 
     def process(self, data):
         """
@@ -60,10 +70,10 @@ class TemperatureDataProcessor:
 
             calculated = self._calculate(data)
             result = self._get_result(calculated)
-            if result.success:
+            if result['success']:
                 res['done'] = True
                 res['reason'] = TEST_SUCCESS
-                res['values'] = result.values
+                res['values'] = result['values']
                 return res
 
             else:
