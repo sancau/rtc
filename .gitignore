@@ -51,3 +51,6 @@ dep73.sqlite3
 
 # VS Code
 .vscode
+
+# Python cache
+__pycache__
