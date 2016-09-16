@@ -17,18 +17,19 @@ TEST_INPUT = {
     "logs": [
         {
             "file": "test_data/0left.txt",
-            "sensors_count": "8",
+            "sensors_count": "1",
         },
         {
             "file": "test_data/0right.txt",
-            "sensors_count": "8",
+            "sensors_count": "1",
         },
     ],
-    "sensors_total": "10",
+    "sensors_total": "2",
     "slice_length": "10",
     "round_to": "1",
     "cp": fake_cp_md,
     "md": fake_cp_md,
+    "max_deviation": "2"
 }
 
 JSON_TEST_INPUT = json.dumps(TEST_INPUT)  # now its pure json
@@ -43,6 +44,7 @@ def handle_temperature_mode(meta):
     :return: An object of type dict containing the test result and all the
     resulting values and meta information.
     """
+
     data_chunks = []
     for log in meta.logs:
         parser = TemperatureDataParser(

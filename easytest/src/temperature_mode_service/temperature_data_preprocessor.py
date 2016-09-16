@@ -50,3 +50,5 @@ class TemperatureDataPreprocessor:
             sliced = merged[i:i + meta.slice_length]
             if len(sliced) == meta.slice_length == len(meta.cp) == len(meta.md):
                 yield self._populate_sensors(sliced, meta)
+            else:
+                print('Length of slices for cp / md / sensors does not match.')

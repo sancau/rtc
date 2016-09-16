@@ -59,12 +59,43 @@ class TemperatureDataProcessor:
             negative_delta = abs(abs(t_min) - abs(meta.target))
             md_delta = abs(abs(t_md) - abs(t_cp))
             deviation = abs(abs(t_max) - abs(t_min))
+            max_deviation = meta.max_deviation
 
-            result_values = {}
-            res['done'] = True
+            def _build_sensor_values_list(s):
+                """
+                Returns all the sensor data as a list of floats
+                :param s: sensor object
+                :return: [float]
+                """
+                return s.values + \
+                    [s.average, s.max_temperature, s.min_temperature,
+                     s.positive_deviation, s.negative_deviation]
+
+            meta.logs = [log.__dict__ for log in meta.logs]
+
+            res['values'] = {
+                'meta': meta.__dict__,
+                'sensors': [_build_sensor_values_list(s) for s in data],
+                't_max': t_max,
+                't_min': t_min,
+                't_md': t_md,
+                't_cp': t_cp,
+                'negative_delta': negative_delta,
+                'md_delta': md_delta,
+                'deviation': deviation,
+                'max_deviation': max_deviation
+            }
+
+            # check if the test is passed
+            for i in [positive_delta, negative_delta]:
+                res['done'] = i < (abs(max_deviation) - abs(md_delta))
+                if not res['done']:
+                    res['reason'] = TEST_FAIL
+                    return res
             res['reason'] = TEST_SUCCESS
-            res['values'] = result_values
+
             return res
+
         except Exception as e:
             res['reason'] = e
         return res

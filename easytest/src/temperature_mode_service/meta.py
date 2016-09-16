@@ -12,6 +12,7 @@ class Meta:
         self.md = [float(v) for v in payload['md']]
         self.target = float(payload['target'])
         self.slice_length = int(payload['slice_length'])
+        self.max_deviation = float(payload['max_deviation'])
         self.round_to = int(payload['round_to'])
         self.logs = [Log(log) for log in payload['logs']]
         self.date = payload.get('date', None)
