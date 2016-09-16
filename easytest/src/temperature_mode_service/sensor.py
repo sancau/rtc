@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 class Sensor:
-    """This class describes a data set for a certain sensor.
-
-    It provides some useful properties to use while processing
-    the data.
+    """
+    This class describes a data set for a certain sensor.
+    It provides some useful properties to use while processing the data.
     """
     def __init__(self, *, name, values):
         self.values = values
