@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-
 """
 Temperature data preprocessor.
 """
-
 from sensor import Sensor
 
 
@@ -15,14 +13,15 @@ class TemperatureDataPreprocessor:
     a list of data pieces (for ex. from different files)
     It returns merged and validated data via a dict object.
     """
-    def _populate_sensors(self, chunk, meta):
+    @staticmethod
+    def _populate_sensors(chunk, meta):
         """
         Returns data chunk populated with Sensor objects.
         """
         result = []
         sensor_values = []
-        for i in chunk[0]:
-            sensor_values.append([None for i in chunk])
+        for _ in chunk[0]:
+            sensor_values.append([None for _ in chunk])
         for j, v in enumerate(chunk):
             for k, p in enumerate(v):
                 sensor_values[k][j] = p
@@ -37,9 +36,9 @@ class TemperatureDataPreprocessor:
 
         return result
 
-    def getMergedChunk(self, *, data_chunks, meta):
+    def get_merged_chunk(self, *, data_chunks, meta):
         """
-        Returns merged and cutted data object using given list of
+        Returns merged and formatted data object using given list of
         data pieces, and it's meta information.
         Implemented as a generator function.
         """

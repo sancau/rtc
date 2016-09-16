@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from log import Log
 
 
@@ -15,3 +14,5 @@ class Meta:
         self.slice_length = int(payload['slice_length'])
         self.round_to = int(payload['round_to'])
         self.logs = [Log(log) for log in payload['logs']]
+        self.date = payload['date']
+        self.time = payload['time']

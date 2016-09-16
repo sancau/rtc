@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-
-
 class Log:
     """
     Describes single log object that embedded to a Meta object.

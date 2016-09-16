@@ -1,19 +1,16 @@
 # -*- coding: utf-8 -*-
-
 """
 Temperature data parser module for easytest application.
 """
-
-import os
-
 DEFAULT_DATA_CONFIG = {
-    'date_line_number': 0, # where to look to date and time
-    'date_position': (25, 36), # to cut out date
-    'time_position': (44, 52), # to cut out time
-    'first_valuable_line': 4, # what line is the first that contains values
-    'time_substring_slice': (7, 19), # to cut out the timestamp from a line
-    'values_start_at': 19 # char index of the first value start
+    'date_line_number': 0,  # where to look to date and time
+    'date_position': (25, 36),  # to cut out date
+    'time_position': (44, 52),  # to cut out time
+    'first_valuable_line': 4,  # what line is the first that contains values
+    'time_substring_slice': (7, 19),  # to cut out the timestamp from a line
+    'values_start_at': 19  # char index of the first value start
 }
+
 
 class TemperatureDataParser:
     """
@@ -31,7 +28,7 @@ class TemperatureDataParser:
     def __init__(self, *, sensors_count, digits, config=DEFAULT_DATA_CONFIG):
         self._sensors_count = sensors_count
         self._config = config
-        self._digits = digits # values will be rounded to <digits> digits
+        self._digits = digits  # values will be rounded to <digits> digits
 
     def _get_time(self, line):
         """
@@ -102,6 +99,7 @@ class TemperatureDataParser:
                 iterations.append(iteration)
             else:
                 print('[TEMPERATURE PARSER] Line is not valid: \n %s' % line)
-        print('[TEMPERATURE PARSER] Parsed %s lines from %s \n' % \
+        print(
+            '[TEMPERATURE PARSER] Parsed %s lines from %s \n' %
             (len(iterations), file_path))
         return iterations, date, time
