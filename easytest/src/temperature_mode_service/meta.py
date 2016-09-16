@@ -17,3 +17,29 @@ class Meta:
         self.logs = [Log(log) for log in payload['logs']]
         self.date = payload.get('date', None)
         self.time = payload.get('time', None)
+
+    def validate(self):
+        """
+        Validates provided meta data.
+        :return: Dict of boolean result and errors.
+        """
+        result = {
+            'errors': []
+        }
+
+        # validate cp / md / slice_length relations
+        if self.slice_length > len(self.cp) or \
+                self.slice_length > len(self.md):
+            result['errors'].append(
+                'Not enough CP / MD values to fit required slice length.')
+
+        # if we have too much values for cp - cut it
+        if self.slice_length < len(self.cp):
+            self.cp = self.cp[:self.slice_length]
+
+        # same with md
+        if self.slice_length < len(self.md):
+            self.md = self.md[:self.slice_length]
+
+        result['valid'] = len(result['errors']) == 0
+        return result

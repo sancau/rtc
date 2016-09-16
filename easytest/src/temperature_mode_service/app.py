@@ -77,5 +77,14 @@ def handle_temperature_mode(meta):
     return res
 
 payload = Meta(json.loads(JSON_TEST_INPUT))  # instantiate Meta object
-TEST_RESULT = handle_temperature_mode(payload)
+
+validation_status = payload.validate()
+if validation_status['valid']:
+    TEST_RESULT = handle_temperature_mode(payload)
+else:
+    TEST_RESULT = {
+        'done': False,
+        'errors': validation_status['errors']
+    }
+
 print(TEST_RESULT)
