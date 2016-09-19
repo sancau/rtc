@@ -2,7 +2,7 @@
 
 import json
 
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 from temperature_mode_handler import TemperatureModeHandler
@@ -13,14 +13,17 @@ CORS(app)
 
 @app.route('/', methods=['POST'])
 def handle():
-    if request.method == 'POST':
-        print(type(request.data))
-        print(type(request.get_json(force=True)))
-
+    try:
         payload = request.get_json(force=True)
         handler = TemperatureModeHandler()
         result = handler.handle(payload)
+        if not result:
+            return jsonify(error='Invalid input data provided.'), 400
         return json.dumps(result)
+    except Exception as e:
+        print(e)
+        return jsonify(error=str(e)), 500
+
 
 if __name__ == '__main__':
     app.run()
