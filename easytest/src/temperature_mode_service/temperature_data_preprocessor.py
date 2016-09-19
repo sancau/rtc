@@ -44,8 +44,9 @@ class TemperatureDataPreprocessor:
         """
         # we don't need timestamps so remove them from data_chunks
         data_chunks = [[i[1] for i in chunk] for chunk in data_chunks]
+        zipped = zip(*data_chunks)
 
-        merged = list([i[0] + i[1] for i in zip(*data_chunks)])
+        merged = list([i[0] for i in zip(*data_chunks)])
         for i in range(0, len(merged)):
             sliced = merged[i:i + meta.slice_length]
             if len(sliced) == meta.slice_length == len(meta.cp) == len(meta.md):

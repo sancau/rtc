@@ -2,6 +2,8 @@
 """
 Temperature data parser module for easytest application.
 """
+import base64
+
 DEFAULT_DATA_CONFIG = {
     'date_line_number': 0,  # where to look to date and time
     'date_position': (25, 35),  # to cut out date
@@ -45,14 +47,12 @@ class TemperatureDataParser:
             time = None
         return time
 
-    def _get_log_date(self, file_path):
+    def _get_log_date(self, file_lines):
         """
         Returns date and time of the log by a given file path.
         """
         date_line_number = self._config['date_line_number']
-        date_line = \
-            open(file_path, encoding=self._encoding) \
-            .readlines()[date_line_number]
+        date_line = file_lines[date_line_number]
 
         date_start, date_end = self._config['date_position']
         time_start, time_end = self._config['time_position']
@@ -89,14 +89,18 @@ class TemperatureDataParser:
                 return False
         return True
 
-    def parse(self, file_path):
+    def parse(self, file_in_base64_str):
         """
         Returns parsed data from a given file path.
         """
-        date, time = self._get_log_date(file_path)
+        bytes_string = bytes(file_in_base64_str, encoding=self._encoding)
+        decoded = base64.decodebytes(bytes_string)
+        string = str(decoded, encoding=self._encoding)
+        file_lines = string.split('\n')
+        date, time = self._get_log_date(file_lines)
         iterations = []
         start = self._config['first_valuable_line']
-        log = open(file_path, encoding=self._encoding).readlines()[start:]
+        log = file_lines[start:]
         for line in log:
             timestamp = self._get_time(line)
             values = self._get_values(line)
