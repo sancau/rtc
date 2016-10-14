@@ -12,6 +12,11 @@
   padding-bottom: 10px;
 }
 
+.inventory .common .sorting-th:hover {
+  color: #336699;
+  cursor: pointer;
+}
+
 .inventory .add-img {
   width: 50px;
   height: 50px;

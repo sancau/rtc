@@ -47,15 +47,53 @@ export default function reducer(state=initialState, action) {
 
   switch (action.type) {
     case 'FILTER_ITEMS': {
+      function applySorting(collection) {
+        let comparator;
+        const { prop, order } = action.payload.sorting;
+        if (prop && order) {
+          if (prop === 'name') {
+            comparator = (a, b) => {
+              return a.name > b.name ? 1 : a.name === b.name ? 0 : -1;
+            };
+          }
+          else {
+            comparator = (a, b) => {
+              function getValidBeforeDate(obj) {
+                if (!obj.tests) return null;
+                let lastTest = obj.tests.slice(-1).pop();
+                if (lastTest != null) {
+                  let date = new Date(lastTest.date);
+                  date.setYear(date.getFullYear() + obj.testPeriod);
+                  return date;
+                }
+                return null;
+              }
+              let a_date = getValidBeforeDate(a);
+              let b_date = getValidBeforeDate(b);
+              return a_date > b_date ? 1 : a_date === b_date ? 0 : -1;
+            };
+          }
+          collection = collection.sort(comparator);
+          if (order === 'descending') {
+            collection = collection.reverse();
+          }
+        }
+        return collection;
+      }
+
+      let items = initialState.items.filter((item) => {
+        let name = item.name.toLowerCase();
+        let queryString = action.payload.queryString.toLowerCase();
+        return name.indexOf(queryString) > -1
+           && action.payload.types[item.type].visible
+           && getAdditions(item, action.payload.types[item.type]);
+      });
+
+      items = applySorting(items);
+
       return {
         ...state,
-        items: initialState.items.filter((item) => {
-          let name = item.name.toLowerCase();
-          let queryString = action.payload.queryString.toLowerCase();
-          return name.indexOf(queryString) > -1
-             && action.payload.types[item.type].visible
-             && getAdditions(item, action.payload.types[item.type]);
-        })
+        items: items
       };
     }
     case 'FETCH_ITEMS_FULFILLED': {

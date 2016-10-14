@@ -21,7 +21,8 @@ export function fetchItems() {
         let objectsArray = response.data.map((item) => {
             return {...item, type: type};
         });
-        mergedData = mergedData.concat(objectsArray);
+        mergedData = mergedData.concat(objectsArray)
+          .sort((a, b) => a.name > b.name ? 1 : a.name === b.name ? 0 : -1)
       }
       dispatch({type: 'FETCH_ITEMS_FULFILLED', payload: mergedData});
     })().catch((err) => {

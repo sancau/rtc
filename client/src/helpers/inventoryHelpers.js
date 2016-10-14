@@ -48,3 +48,16 @@ export function getTestStatusClassName(obj) {
   }
   return '-';
 }
+
+export function genericSort(prop) {
+  let newQuery = Object.assign(this.props.query, {});
+  if (prop === newQuery.sorting.prop) {
+    newQuery.sorting.order = newQuery.sorting.order === 'ascending'
+      ? 'descending' : 'ascending';
+  }
+  else {
+    newQuery.sorting.order = 'ascending';
+  }
+  newQuery.sorting.prop = prop;
+  this.props.updateQuery(newQuery);
+}

@@ -33,6 +33,10 @@ class Inventory extends Component {
     // initial default query
     this.initialQuery = {
       queryString: '',
+      sorting: {
+        prop: 'name',
+        order: 'ascending'
+      },
       types: {
         systems: {
           visible: true,

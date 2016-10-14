@@ -4,7 +4,8 @@ import { StickyContainer, Sticky } from 'react-sticky';
 
 import {
   getValidBefore,
-  getTestStatusClassName } from '../../helpers/inventoryHelpers';
+  getTestStatusClassName,
+  genericSort } from '../../helpers/inventoryHelpers';
 
 import './SystemsList.css';
 
@@ -59,6 +60,8 @@ class SystemsList extends Component {
       this.props.updateQuery(newQuery);
     };
 
+    const sort = genericSort.bind(this);
+
     return (
       <div className="systems-list common">
         <StickyContainer>
@@ -93,8 +96,10 @@ class SystemsList extends Component {
           <table className="table clickable">
             <thead>
               <tr>
-                <th>Наименование</th>
-                <th>Срок аттестации</th>
+                <th className='sorting-th'
+                  onClick={() => sort('name')}>Наименование</th>
+                <th className='sorting-th'
+                  onClick={() => sort('date')}>Срок аттестации</th>
                 <th>Примечание</th>
               </tr>
             </thead>

@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import { StickyContainer, Sticky } from 'react-sticky';
 
+import { genericSort } from '../../helpers/inventoryHelpers';
+
 import './ItemsList.css';
 
 class ItemsList extends Component {
@@ -68,6 +70,8 @@ class ItemsList extends Component {
       this.props.updateQuery(newQuery);
     };
 
+    const sort = genericSort.bind(this);
+
     return (
       <div className="items-list common">
         <StickyContainer>
@@ -108,7 +112,8 @@ class ItemsList extends Component {
           <table className="table clickable">
             <thead>
               <tr>
-                <th>Наименование</th>
+                <th className='sorting-th'
+                  onClick={() => sort('name')}>Наименование</th>
                 <th>Категория</th>
                 <th>Примечание</th>
               </tr>

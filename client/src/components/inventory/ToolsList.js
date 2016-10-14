@@ -4,7 +4,8 @@ import { StickyContainer, Sticky } from 'react-sticky';
 
 import {
   getValidBefore,
-  getTestStatusClassName } from '../../helpers/inventoryHelpers';
+  getTestStatusClassName,
+  genericSort } from '../../helpers/inventoryHelpers';
 
 class ToolsList extends Component {
   render() {
@@ -21,6 +22,8 @@ class ToolsList extends Component {
       );
     });
 
+    const sort = genericSort.bind(this);
+
     return (
       <div className="tools-list common">
         <StickyContainer>
@@ -32,9 +35,11 @@ class ToolsList extends Component {
           <table className="table clickable">
             <thead>
               <tr>
-                <th>Наименование</th>
+                <th className='sorting-th'
+                  onClick={() => sort('name')}>Наименование</th>
                 <th>Технические характеристики</th>
-                <th>Срок поверки</th>
+                <th className='sorting-th'
+                  onClick={() => sort('date')}>Срок поверки</th>
                 <th>Примечание</th>
               </tr>
             </thead>
