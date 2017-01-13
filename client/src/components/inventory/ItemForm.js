@@ -40,7 +40,7 @@ class ItemForm extends Component {
         <tbody>
           <tr>
             <td className="fit-content">
-              <strong>Наименование</strong>
+              <strong>Наименование (обязательное поле)</strong>
             </td>
             <td>
               <input
@@ -50,7 +50,7 @@ class ItemForm extends Component {
             </td>
           </tr>
           <tr>
-            <td className="fit-content"><strong>Категория</strong></td>
+            <td className="fit-content"><strong>Категория (обязательное поле)</strong></td>
             <td>
               <Select
                 searchable={false}
@@ -82,7 +82,7 @@ class ItemForm extends Component {
             </td>
           </tr>
           <tr>
-            <td className="fit-content"><strong>Ед. измерения</strong></td>
+            <td className="fit-content"><strong>Ед. измерения (обязательное поле)</strong></td>
             <td>
               <input
                 type="text" className="form-control"
@@ -100,7 +100,7 @@ class ItemForm extends Component {
             </td>
           </tr>
           <tr>
-            <td className="fit-content"><strong>Количество</strong></td>
+            <td className="fit-content"><strong>Количество (обязательное поле)</strong></td>
             <td>
               <input
                 type="text" className="form-control"

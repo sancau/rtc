@@ -39,7 +39,7 @@ class SystemForm extends Component {
         <tbody>
           <tr>
             <td className="fit-content">
-              <strong>Наименование</strong>
+              <strong>Наименование (обязательное поле)</strong>
             </td>
             <td>
               <input
@@ -69,7 +69,7 @@ class SystemForm extends Component {
             </td>
           </tr>
           <tr>
-            <td className="fit-content"><strong>Ед. измерения</strong></td>
+            <td className="fit-content"><strong>Ед. измерения (обязательное поле)</strong></td>
             <td>
               <input
                 type="text" className="form-control"
@@ -87,7 +87,7 @@ class SystemForm extends Component {
             </td>
           </tr>
           <tr>
-            <td className="fit-content"><strong>Количество</strong></td>
+            <td className="fit-content"><strong>Количество (обязательное поле)</strong></td>
             <td>
               <input
                 type="text" className="form-control"
@@ -115,7 +115,7 @@ class SystemForm extends Component {
           </tr>
           <tr>
             <td className="fit-content">
-              <strong>Период аттестации (лет)</strong>
+              <strong>Период аттестации (лет)  (обязательное поле)</strong>
             </td>
             <td>
               <input
@@ -154,7 +154,7 @@ class SystemForm extends Component {
             </td>
           </tr>
           <tr>
-            <td className="fit-content"><strong>Назначение</strong></td>
+            <td className="fit-content"><strong>Назначение  (обязательное поле)</strong></td>
             <td>
               <Select
                 searchable={false}
@@ -166,7 +166,7 @@ class SystemForm extends Component {
             </td>
           </tr>
           <tr>
-            <td><strong>Дата последней аттестации</strong></td>
+            <td><strong>Дата последней аттестации (обязательное поле)</strong></td>
             <td>
               <input
               type="text"
@@ -178,7 +178,7 @@ class SystemForm extends Component {
           </tr>
           <tr>
             <td className="fit-content">
-              <strong>Номер свидетельства</strong>
+              <strong>Номер свидетельства (обязательное поле)</strong>
             </td>
             <td>
               <input
