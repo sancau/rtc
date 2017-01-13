@@ -19,7 +19,7 @@ import {
   closeNew,
   addDocument } from '../../actions/inventoryActions';
 
-import { mergeDeep } from '../../helpers/utils';
+import { mergeDeep, strToDate } from '../../helpers/utils';
 
 import addObjectImage from '../../images/plus.svg';
 
@@ -100,6 +100,14 @@ class Inventory extends Component {
     }.bind(this);
 
     this.addObject = function(data) {
+      let date = strToDate(data.lastTestDate);
+      let sertificate = data.sertificate;
+      data.tests = [
+        {
+          date: date,
+          sertificate: sertificate
+        }
+      ]
       this.props.dispatch(addDocument(data));
     }.bind(this);
   }

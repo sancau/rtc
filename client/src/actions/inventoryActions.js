@@ -34,6 +34,7 @@ export function fetchItems() {
 export function saveDocument(document) {
   return function(dispatch) {
     Promise.coroutine(function* (document) {
+      console.log(document);
       let response =
       yield axios.put(`${API_URL}/${document.type}/${document._id}`, document);
       dispatch({type: 'SAVE_DOCUMENT_FULFILLED', payload: response});
