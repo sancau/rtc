@@ -14,6 +14,14 @@ schemaObject.purpose = {
   enum: ['climatic', 'mechanic', 'vacuum'] 
 };
 
+schemaObject.testMethod = {
+	type: String
+};
+
+schemaObject.testProgram = {
+	type: String
+};
+
 let systemSchema = new Schema(schemaObject);
 
 module.exports = {

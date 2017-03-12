@@ -44,6 +44,17 @@ class ToolForm extends Component {
             </td>
           </tr>
           <tr>
+            <td className="fit-content">
+              <strong>Заводской номер</strong>
+            </td>
+            <td>
+              <input
+                type="text" className="form-control"
+                value={this.state.model.factoryNumber}
+                onChange={(e) => handleChange(e, 'factoryNumber')}/>
+            </td>
+          </tr>
+          <tr>
             <td className="fit-content"><strong>Код</strong></td>
             <td>
               <input

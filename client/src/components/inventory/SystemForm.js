@@ -60,6 +60,17 @@ class SystemForm extends Component {
             </td>
           </tr>
           <tr>
+            <td className="fit-content">
+              <strong>Заводской номер</strong>
+            </td>
+            <td>
+              <input
+                type="text" className="form-control"
+                value={this.state.model.factoryNumber}
+                onChange={(e) => handleChange(e, 'factoryNumber')}/>
+            </td>
+          </tr>
+          <tr>
             <td className="fit-content"><strong>Код</strong></td>
             <td>
               <input
@@ -163,6 +174,28 @@ class SystemForm extends Component {
                 options={purposeOptions}
                 onChange={onSelectionChange}
               />
+            </td>
+          </tr>
+          <tr>
+            <td className="fit-content">
+              <strong>Методика аттестации</strong>
+            </td>
+            <td>
+              <input
+                type="text" className="form-control"
+                value={this.state.model.testMethod}
+                onChange={(e) => handleChange(e, 'testMethod')}/>
+            </td>
+          </tr>
+          <tr>
+            <td className="fit-content">
+              <strong>Программа аттестации</strong>
+            </td>
+            <td>
+              <input
+                type="text" className="form-control"
+                value={this.state.model.testProgram}
+                onChange={(e) => handleChange(e, 'testProgram')}/>
             </td>
           </tr>
           <tr>

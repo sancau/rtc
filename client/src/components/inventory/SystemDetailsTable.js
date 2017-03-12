@@ -29,6 +29,12 @@ class SystemDetailsTable extends Component {
             <td>{system.inventoryNumber}</td>
           </tr>
           <tr>
+            <td className="fit-content">
+            <strong>Заводской номер</strong>
+            </td>
+            <td>{system.factoryNumber}</td>
+          </tr>
+          <tr>
             <td className="fit-content"><strong>Код</strong></td>
             <td>{system.code}</td>
           </tr>
@@ -80,6 +86,18 @@ class SystemDetailsTable extends Component {
               'Климатические испытания' : 'Механические испытания'
             }
             </td>
+          </tr>
+          <tr>
+            <td className="fit-content">
+            <strong>Методика аттестации</strong>
+            </td>
+            <td>{system.testMethod}</td>
+          </tr>
+          <tr>
+            <td className="fit-content">
+            <strong>Программа аттестации</strong>
+            </td>
+            <td>{system.testProgram}</td>
           </tr>
           <tr>
             <td><strong>Дата последней аттестации</strong></td>

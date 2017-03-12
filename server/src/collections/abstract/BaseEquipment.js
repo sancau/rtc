@@ -10,6 +10,7 @@ let baseEquipment = {
   manufacturer: { type: String },
   yearOfProduction: { type: Number, min: 1950, max: 2020 },
   techDetails: { type: String },
+  factoryNumber: { type: String },
 };
 
 module.exports = baseEquipment;
